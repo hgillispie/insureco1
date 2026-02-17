@@ -23,6 +23,17 @@
       gap: var(--spacing-04);
     }
 
+    .back-buttons {
+      display: flex;
+      gap: var(--spacing-03);
+    }
+
+    .back-button {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-02);
+    }
+
     .header-title {
       display: flex;
       align-items: flex-start;

@@ -196,11 +196,14 @@ export default function MapView({ properties = [], vehicles = [], selectedAssetT
                           </div>
                         )}
                       </div>
+                      {/* Navigate to the property detail page, passing { from: 'map' } in
+                         route state so the detail page can conditionally render a
+                         "Back to Map" button for easy return navigation */}
                       <Button
                         kind="primary"
                         size="sm"
                         className="popup-button"
-                        onClick={() => navigate(`/business/properties/${property.id}`)}
+                        onClick={() => navigate(`/business/properties/${property.id}`, { state: { from: 'map' } })}
                       >
                         View Details
                       </Button>
@@ -265,11 +268,14 @@ export default function MapView({ properties = [], vehicles = [], selectedAssetT
                           </div>
                         )}
                       </div>
+                      {/* Navigate to the vehicle detail page, passing { from: 'map' } in
+                         route state so the detail page can conditionally render a
+                         "Back to Map" button for easy return navigation */}
                       <Button
                         kind="primary"
                         size="sm"
                         className="popup-button"
-                        onClick={() => navigate(`/business/fleet/${vehicle.id}`)}
+                        onClick={() => navigate(`/business/fleet/${vehicle.id}`, { state: { from: 'map' } })}
                       >
                         View Details
                       </Button>

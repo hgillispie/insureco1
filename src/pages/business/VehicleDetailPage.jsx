@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
   Grid,
   Column,
@@ -36,6 +36,13 @@ import './VehicleDetailPage.scss';
 export default function VehicleDetailPage() {
   const { vehicleId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+
+  // Check if the user navigated here from the Map page (MapView component).
+  // When MapView navigates to this detail page, it passes { state: { from: 'map' } }
+  // in the route state. This flag is used to conditionally render a "Back to Map"
+  // button so the user can easily return to the map view they came from.
+  const cameFromMap = location.state?.from === 'map';
 
   const vehicle = getVehicleById(vehicleId);
   const claims = getClaimsForAsset(vehicleId);
@@ -72,14 +79,21 @@ export default function VehicleDetailPage() {
       {/* Header Section */}
       <Column lg={16} md={8} sm={4} className="page-header">
         <div className="header-content">
-          <Button
-            kind="ghost"
-            renderIcon={ArrowLeft}
-            iconDescription="Back"
-            onClick={() => navigate('/business/fleet')}
-          >
-            Back
-          </Button>
+          {/* Conditionally render "Back to Map" button only when the user arrived
+              from the Map page. This provides a convenient way to return to the map
+              without relying on browser back navigation. The ArrowLeft icon is placed
+              before the label text for correct left-to-right reading order. */}
+          {cameFromMap && (
+            <Button
+              kind="ghost"
+              iconDescription="Back to Map"
+              onClick={() => navigate('/business/map')}
+              className="back-button"
+            >
+              <ArrowLeft size={16} />
+              Back to Map
+            </Button>
+          )}
           <div className="header-title">
             <CarFront size={32} className="page-icon" />
             <div>
