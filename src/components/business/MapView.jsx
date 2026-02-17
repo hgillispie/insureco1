@@ -196,6 +196,9 @@ export default function MapView({ properties = [], vehicles = [], selectedAssetT
                           </div>
                         )}
                       </div>
+                      {/* Navigate to the property detail page, passing { from: 'map' } in
+                         route state so the detail page can conditionally render a
+                         "Back to Map" button for easy return navigation */}
                       <Button
                         kind="primary"
                         size="sm"
@@ -265,6 +268,9 @@ export default function MapView({ properties = [], vehicles = [], selectedAssetT
                           </div>
                         )}
                       </div>
+                      {/* Navigate to the vehicle detail page, passing { from: 'map' } in
+                         route state so the detail page can conditionally render a
+                         "Back to Map" button for easy return navigation */}
                       <Button
                         kind="primary"
                         size="sm"

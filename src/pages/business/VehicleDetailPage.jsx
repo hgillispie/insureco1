@@ -37,6 +37,11 @@ export default function VehicleDetailPage() {
   const { vehicleId } = useParams();
   const navigate = useNavigate();
   const location = useLocation();
+
+  // Check if the user navigated here from the Map page (MapView component).
+  // When MapView navigates to this detail page, it passes { state: { from: 'map' } }
+  // in the route state. This flag is used to conditionally render a "Back to Map"
+  // button so the user can easily return to the map view they came from.
   const cameFromMap = location.state?.from === 'map';
 
   const vehicle = getVehicleById(vehicleId);
@@ -74,6 +79,10 @@ export default function VehicleDetailPage() {
       {/* Header Section */}
       <Column lg={16} md={8} sm={4} className="page-header">
         <div className="header-content">
+          {/* Conditionally render "Back to Map" button only when the user arrived
+              from the Map page. This provides a convenient way to return to the map
+              without relying on browser back navigation. The ArrowLeft icon is placed
+              before the label text for correct left-to-right reading order. */}
           {cameFromMap && (
             <Button
               kind="ghost"
