@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, useLocation } from 'react-router-dom';
 import {
   Grid,
   Column,
@@ -35,6 +35,8 @@ import './PropertyDetailPage.scss';
 export default function PropertyDetailPage() {
   const { propertyId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
+  const cameFromMap = location.state?.from === 'map';
 
   const property = getPropertyById(propertyId);
   const claims = getClaimsForAsset(propertyId);
@@ -71,14 +73,28 @@ export default function PropertyDetailPage() {
       {/* Header Section */}
       <Column lg={16} md={8} sm={4} className="page-header">
         <div className="header-content">
-          <Button
-            kind="ghost"
-            renderIcon={ArrowLeft}
-            iconDescription="Back"
-            onClick={() => navigate('/business/properties')}
-          >
-            Back
-          </Button>
+          <div className="back-buttons">
+            <Button
+              kind="ghost"
+              iconDescription="Back"
+              onClick={() => navigate('/business/properties')}
+              className="back-button"
+            >
+              <ArrowLeft size={16} />
+              Back
+            </Button>
+            {cameFromMap && (
+              <Button
+                kind="ghost"
+                iconDescription="Back to Map"
+                onClick={() => navigate('/business/map')}
+                className="back-button"
+              >
+                <ArrowLeft size={16} />
+                Back to Map
+              </Button>
+            )}
+          </div>
           <div className="header-title">
             <Building size={32} className="page-icon" />
             <div>
