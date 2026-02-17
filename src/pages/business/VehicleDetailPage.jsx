@@ -74,28 +74,17 @@ export default function VehicleDetailPage() {
       {/* Header Section */}
       <Column lg={16} md={8} sm={4} className="page-header">
         <div className="header-content">
-          <div className="back-buttons">
+          {cameFromMap && (
             <Button
               kind="ghost"
-              iconDescription="Back"
-              onClick={() => navigate('/business/fleet')}
+              iconDescription="Back to Map"
+              onClick={() => navigate('/business/map')}
               className="back-button"
             >
               <ArrowLeft size={16} />
-              Back
+              Back to Map
             </Button>
-            {cameFromMap && (
-              <Button
-                kind="ghost"
-                iconDescription="Back to Map"
-                onClick={() => navigate('/business/map')}
-                className="back-button"
-              >
-                <ArrowLeft size={16} />
-                Back to Map
-              </Button>
-            )}
-          </div>
+          )}
           <div className="header-title">
             <CarFront size={32} className="page-icon" />
             <div>
