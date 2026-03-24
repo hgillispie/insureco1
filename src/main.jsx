@@ -1,4 +1,5 @@
 import "./index.scss";
+import "./utils/builder-registry";
 
 import React from "react";
 import { createRoot } from "react-dom/client";
