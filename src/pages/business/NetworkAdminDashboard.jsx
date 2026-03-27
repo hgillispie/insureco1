@@ -143,13 +143,13 @@ export default function NetworkAdminDashboard() {
       {!warningDismissed && (
         <div className="notification-wrapper">
           <InlineNotification
-            kind="warning"
+            kind="error"
             lowContrast
             title=""
             subtitle="This is a warning message"
             onCloseButtonClick={() => setWarningDismissed(true)}
-            aria-label="Dismiss warning notification"
-            statusIconDescription="warning"
+            aria-label="Dismiss error notification"
+            statusIconDescription="error"
           />
         </div>
       )}
