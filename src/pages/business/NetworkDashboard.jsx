@@ -170,6 +170,7 @@ export default function NetworkDashboard() {
             title="Title"
             subtitle="Message"
             onCloseButtonClick={() => setNotificationOpen(false)}
+            style={{ backgroundColor: 'rgba(244, 0, 0, 1)' }}
           />
         </div>
       )}
