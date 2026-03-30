@@ -21,6 +21,7 @@ import FileClaimPage from "./pages/business/FileClaimPage";
 import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
 import BlogPage from "./pages/BlogPage";
+import FeaturedStoryPreview from "./pages/FeaturedStoryPreview";
 import FinancialDashboard1 from "./pages/FinancialDashboard1";
 import FinancialDashboard2 from "./pages/FinancialDashboard2";
 import FinancialDashboard3 from "./pages/FinancialDashboard3";
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/theme-preview" element={<ThemePreviewPage />} />
         <Route path="/progress-preview" element={<ProgressIndicatorPreview />} />
+        <Route path="/featured-story-preview" element={<FeaturedStoryPreview />} />
 
         {/* Business Routes */}
         <Route path="/business" element={<Navigate to="/business/dashboard" replace />} />
