@@ -1,0 +1,35 @@
+@use "../styles/tokens" as *;
+
+.featured-story-preview {
+  padding: var(--spacing-07);
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.featured-story-preview__header {
+  margin-bottom: var(--spacing-09);
+}
+
+.featured-story-preview__heading {
+  font-size: var(--heading-h2-size);
+  font-weight: var(--font-weight-bold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-03);
+}
+
+.featured-story-preview__subheading {
+  font-size: var(--body-medium-size);
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.featured-story-preview__section {
+  margin-bottom: var(--spacing-09);
+}
+
+.featured-story-preview__section-title {
+  font-size: var(--heading-h4-size);
+  font-weight: var(--heading-h4-weight);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-05);
+}

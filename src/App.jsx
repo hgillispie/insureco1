@@ -25,6 +25,7 @@ import FinancialDashboard1 from "./pages/FinancialDashboard1";
 import FinancialDashboard2 from "./pages/FinancialDashboard2";
 import FinancialDashboard3 from "./pages/FinancialDashboard3";
 import FinancialDashboardOptions from "./pages/FinancialDashboardOptions";
+import FeaturedStoryPreview from "./pages/FeaturedStoryPreview";
 
 export default function App() {
   return (
@@ -43,6 +44,7 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/theme-preview" element={<ThemePreviewPage />} />
         <Route path="/progress-preview" element={<ProgressIndicatorPreview />} />
+        <Route path="/featured-story-preview" element={<FeaturedStoryPreview />} />
 
         {/* Business Routes */}
         <Route path="/business" element={<Navigate to="/business/dashboard" replace />} />
