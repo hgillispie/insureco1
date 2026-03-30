@@ -100,6 +100,9 @@ export default function Layout({ children }) {
                 <HeaderMenuItem onClick={() => navigate("/about")}>
                   About
                 </HeaderMenuItem>
+                <HeaderMenuItem onClick={() => navigate("/blog")}>
+                  Blog
+                </HeaderMenuItem>
               </HeaderNavigation>
               <HeaderGlobalBar>
                 <HeaderGlobalAction aria-label="Search">
@@ -192,6 +195,9 @@ export default function Layout({ children }) {
                     </HeaderMenuItem>
                     <HeaderMenuItem onClick={() => handleNavigateAndClose("/about")}>
                       About
+                    </HeaderMenuItem>
+                    <HeaderMenuItem onClick={() => handleNavigateAndClose("/blog")}>
+                      Blog
                     </HeaderMenuItem>
                   </HeaderSideNavItems>
                 </SideNavItems>

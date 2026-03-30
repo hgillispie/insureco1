@@ -11,6 +11,7 @@
     "build-storybook": "storybook build"
   },
   "dependencies": {
+    "@builder.io/sdk-react": "^5.2.0",
     "@carbon/react": "^1.83.0-rc.0",
     "leaflet": "^1.9.4",
     "react": "^19.0.0",
