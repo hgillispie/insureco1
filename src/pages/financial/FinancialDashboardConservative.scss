@@ -101,6 +101,10 @@
     margin-bottom: var(--spacing-05);
     flex-wrap: wrap;
     gap: var(--spacing-04);
+
+    .fin-conservative__section-title {
+      font-weight: var(--font-weight-bold);
+    }
   }
 
   &__section-title {
