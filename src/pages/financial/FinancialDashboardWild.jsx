@@ -3,8 +3,7 @@ import {
   Heading, Tag, Button, ContentSwitcher, Switch, Dropdown,
 } from '@carbon/react';
 import {
-  ArrowUp, ArrowDown, CaretSort, Flame, Trophy, WarningHex,
-  CircleFilled,
+  ArrowUp, ArrowDown, CaretSort, Fire, CircleDash,
 } from '@carbon/icons-react';
 import {
   AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer,
@@ -127,8 +126,8 @@ export default function FinancialDashboardWild() {
               {formatCurrency(stats.totalOwed * 12)}
             </span>
             <div className="fin-wild__big-breakdown">
-              <span><CircleFilled size={10} style={{ color: '#0f62fe' }} /> Auto {formatCurrency(stats.autoOwed * 12)}</span>
-              <span><CircleFilled size={10} style={{ color: '#009d9a' }} /> Property {formatCurrency(stats.propertyOwed * 12)}</span>
+              <span><CircleDash size={10} style={{ color: '#0f62fe' }} /> Auto {formatCurrency(stats.autoOwed * 12)}</span>
+              <span><CircleDash size={10} style={{ color: '#009d9a' }} /> Property {formatCurrency(stats.propertyOwed * 12)}</span>
             </div>
           </div>
           <div className="fin-wild__big-stat">
@@ -137,8 +136,8 @@ export default function FinancialDashboardWild() {
               {formatCurrency(stats.totalClaimed)}
             </span>
             <div className="fin-wild__big-breakdown">
-              <span><CircleFilled size={10} style={{ color: '#ff832b' }} /> Auto {formatCurrency(stats.autoClaimed)}</span>
-              <span><CircleFilled size={10} style={{ color: '#da1e28' }} /> Property {formatCurrency(stats.propertyClaimed)}</span>
+              <span><CircleDash size={10} style={{ color: '#ff832b' }} /> Auto {formatCurrency(stats.autoClaimed)}</span>
+              <span><CircleDash size={10} style={{ color: '#da1e28' }} /> Property {formatCurrency(stats.propertyClaimed)}</span>
             </div>
           </div>
         </div>
@@ -185,7 +184,7 @@ export default function FinancialDashboardWild() {
           <div className="fin-wild__donut-legend">
             {categoryPieData.map((d, i) => (
               <span key={d.name} className="fin-wild__donut-legend-item">
-                <CircleFilled size={8} style={{ color: PIE_COLORS[i] }} /> {d.name}
+                <CircleDash size={8} style={{ color: PIE_COLORS[i] }} /> {d.name}
               </span>
             ))}
           </div>
@@ -235,7 +234,7 @@ export default function FinancialDashboardWild() {
             {topClaimants.map((asset, i) => (
               <div key={asset.id} className="fin-wild__claimant-item">
                 <div className="fin-wild__claimant-rank">
-                  {i === 0 ? <Flame size={16} style={{ color: '#da1e28' }} /> : <span className="fin-wild__rank-num">{i + 1}</span>}
+                  {i === 0 ? <Fire size={16} style={{ color: '#da1e28' }} /> : <span className="fin-wild__rank-num">{i + 1}</span>}
                 </div>
                 <div className="fin-wild__claimant-info">
                   <span className="fin-wild__claimant-name">{asset.name}</span>
