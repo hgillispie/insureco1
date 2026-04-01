@@ -2,6 +2,7 @@
 
 .financial-dashboard-1 {
   padding: var(--spacing-06) 0;
+  color: #750e13;
 
   .dashboard-header {
     margin-bottom: var(--spacing-07);
@@ -16,6 +17,7 @@
     .dashboard-subtitle {
       font-size: var(--body-text-medium);
       color: var(--text-secondary);
+      font-weight: var(--font-weight-bold);
     }
   }
 
