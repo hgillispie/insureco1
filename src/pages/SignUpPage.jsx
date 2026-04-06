@@ -167,14 +167,16 @@ export default function SignUpPage() {
             <p className="signup-step-description">
               Your basic info
             </p>
-            <TextInput
-              id="firstName"
-              labelText="First Name"
-              placeholder="Enter your first name"
-              value={formData.firstName}
-              onChange={(e) => updateFormData('firstName', e.target.value)}
-              required
-            />
+            <div className="first-name-field">
+              <TextInput
+                id="firstName"
+                labelText="First Name"
+                placeholder="Enter your first name"
+                value={formData.firstName}
+                onChange={(e) => updateFormData('firstName', e.target.value)}
+                required
+              />
+            </div>
             <TextInput
               id="lastName"
               labelText="Last Name"
