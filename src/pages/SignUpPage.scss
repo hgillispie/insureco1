@@ -86,7 +86,8 @@
   font-weight: var(--font-weight-regular);
   line-height: 1.2;
   color: var(--text-on-color);
-  margin-bottom: var(--spacing-03);
+  margin: auto auto var(--spacing-03) auto;
+  border: 1px solid #da1e28;
 
   @media (min-width: 480px) {
     font-size: var(--heading-h3-size);
@@ -188,6 +189,11 @@
     margin: 0 !important;
   }
 
+  // All step labels - border styling
+  .cds--progress-label {
+    border: 1px solid #0f62fe;
+  }
+
   // Current step styling
   .cds--progress-step--current {
     .cds--progress-label {
@@ -284,7 +290,7 @@
 }
 
 .signup-form {
-  background: var(--background-secondary);
+  background: url('https://cdn.builder.io/api/v1/image/assets%2Fd060746da08e4f63853fb50b2afdab2e%2Fa2f082a96e814d078a2ba0d6ae39d5a0') no-repeat center / cover, var(--background-secondary);
   border-radius: var(--radius-lg);
   border-top: 5px solid var(--color-brand-red-60);
   padding: var(--spacing-04);
@@ -694,6 +700,14 @@
     width: 100% !important;
     min-width: 0 !important;
     box-sizing: border-box !important;
+  }
+
+  .first-name-field .cds--label {
+    background-color: #0f62fe;
+    background-image: url('https://cdn.builder.io/api/v1/image/assets%2Fd060746da08e4f63853fb50b2afdab2e%2F234b47441f5f485c9f512f3d20ef3afb');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
   }
 
   .cds--label {
