@@ -1,9 +1,39 @@
+/**
+ * @file ConservativeDashboard.jsx
+ * @description Design Prototype 1 of 3 — "Conservative"
+ *
+ * Philosophy:
+ *   Follows standard IBM Carbon Design System patterns. Every element maps
+ *   directly to a Carbon component. Layout uses the Carbon 16-column Grid.
+ *   Interactions use ContentSwitcher, Select, and DataTable conventions that
+ *   enterprise users already know. No custom UI chrome — maximum familiarity.
+ *
+ * Sections:
+ *   1. Filter Bar  — Gross/Net toggle (ContentSwitcher), Timeframe + Region selects
+ *   2. KPI Cards   — 4 tiles: Total Owed, Total Claimed, Property split, Auto split
+ *   3. Chart       — Multi-series LineChart (Recharts); individual series togglable
+ *   4. Ledger      — Sortable asset table; rows link to the drill-down detail page
+ *
+ * State:
+ *   grossNet      — 'gross' | 'net'  (net applies a 0.85× reinsurance multiplier)
+ *   timeframe     — '12m' | '6m' | 'ytd'  (slices chart data)
+ *   region        — filter tag; not yet wired to data (prototype placeholder)
+ *   sortField     — which column drives table ordering
+ *   sortDir       — 'asc' | 'desc'
+ *   activeSeries  — map of { seriesKey: boolean } controlling chart line visibility
+ *
+ * Data dependencies:
+ *   financialMockData.js — ytdSummary, filterChartData, applyGrossNet,
+ *                          applyGrossNetToChartData, getAssetLedger
+ *   businessHelpers.js   — formatCurrency
+ */
+
 import React, { useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   Grid, Column, Tile,
-  ContentSwitcher, Switch,
-  Select, SelectItem,
+  ContentSwitcher, Switch,   // Gross / Net toggle
+  Select, SelectItem,        // Timeframe and Region dropdowns
   Tag, Button, Checkbox,
 } from '@carbon/react';
 import { Building, CarFront, View } from '@carbon/icons-react';
@@ -18,6 +48,20 @@ import {
 } from '../../data/financialMockData';
 import './ConservativeDashboard.scss';
 
+/**
+ * SERIES — chart data series configuration.
+ *
+ * Each entry drives both the Recharts <Line> element and the corresponding
+ * Checkbox toggle in the chart header. Colors use the design system's
+ * semantic palette:
+ *   - Green (#24a148)  → premium / revenue (positive signal)
+ *   - Red   (#da1e28)  → claims / expense  (negative signal)
+ *   - Blue  (#0f62fe)  → auto premiums     (secondary revenue)
+ *   - Amber (#f1c21b)  → auto claims       (secondary expense)
+ *
+ * NOTE: Recharts renders SVG so CSS custom properties cannot be used as stroke
+ * values. Static hex codes are used here intentionally.
+ */
 const SERIES = [
   { key: 'propertyPremiums', label: 'Property Premiums', color: '#24a148' },
   { key: 'propertyClaims',   label: 'Property Claims',   color: '#da1e28' },
@@ -26,17 +70,38 @@ const SERIES = [
 ];
 
 /**
- * ConservativeDashboard — Standard IBM Carbon Design System approach.
- * Clean, structured, professional. Familiar to any enterprise user.
+ * ConservativeDashboard
+ *
+ * Standard IBM Carbon Design System approach to the IFAD layout.
+ * Clean, structured, and immediately familiar to enterprise users.
+ * Prioritises legibility and pattern consistency over visual novelty.
  */
 export default function ConservativeDashboard() {
   const navigate = useNavigate();
 
+  // ── Filter state ───────────────────────────────────────────────────────────
+  // grossNet:  Controls whether dollar values are shown pre- or post-reinsurance.
+  //            'net' applies a 0.85× multiplier to premium figures.
   const [grossNet, setGrossNet]   = useState('gross');
+
+  // timeframe: Slices the monthly chart data array for the Recharts LineChart.
+  //            '12m' = full year, '6m' = half year, 'ytd' = Q1 2024 only.
   const [timeframe, setTimeframe] = useState('12m');
+
+  // region:    UI-only filter placeholder. In production this would filter the
+  //            asset ledger by geographic region (state/city).
   const [region, setRegion]       = useState('all');
+
+  // ── Table sort state ───────────────────────────────────────────────────────
+  // sortField: Column key used for ordering the asset ledger rows.
+  // sortDir:   'desc' puts the highest value first (e.g. largest claims at top).
   const [sortField, setSortField] = useState('totalClaims');
   const [sortDir, setSortDir]     = useState('desc');
+
+  // ── Chart series visibility ────────────────────────────────────────────────
+  // activeSeries: Boolean map keyed by SERIES[].key. When false, the
+  //               corresponding <Line> element is omitted from the chart,
+  //               letting users isolate specific trends (e.g. Auto Claims only).
   const [activeSeries, setActiveSeries] = useState({
     propertyPremiums: true,
     propertyClaims:   true,
@@ -44,8 +109,17 @@ export default function ConservativeDashboard() {
     autoClaims:       true,
   });
 
+  // ── Derived data ───────────────────────────────────────────────────────────
+  // assetLedger: Combined property + vehicle list with lifecycle claim totals.
+  //              Memoised with [] deps because the source data is static mock data.
   const assetLedger = useMemo(() => getAssetLedger(), []);
 
+  // kpis: Dollar values shown on the four KPI tiles.
+  //   - totalClaimed is NOT multiplied — claims are a fixed obligation regardless
+  //     of whether the view is gross or net. Only premiums are affected.
+  //   - applyGrossNet multiplies by 0.85 when grossNet === 'net', representing
+  //     the net retained premium after reinsurance cession.
+  //   - Recalculates whenever grossNet changes.
   const kpis = useMemo(() => ({
     totalOwed:        applyGrossNet(ytdSummary.totalOwedGross, grossNet),
     totalClaimed:     ytdSummary.totalClaimedGross,
@@ -55,11 +129,23 @@ export default function ConservativeDashboard() {
     autoClaimed:      ytdSummary.autoClaimedGross,
   }), [grossNet]);
 
+  // chartData: Monthly data array fed to the Recharts LineChart.
+  //   1. filterChartData(timeframe) slices the 12-month array to the selected window.
+  //   2. applyGrossNetToChartData then scales premium columns by 0.85 if net is active.
+  //      Claim columns are left unchanged for the same reason as the KPI tiles above.
+  //   Recalculates when either timeframe or grossNet changes.
   const chartData = useMemo(
     () => applyGrossNetToChartData(filterChartData(timeframe), grossNet),
     [timeframe, grossNet],
   );
 
+  // sortedLedger: A sorted copy of the asset ledger for the table.
+  //   A copy is made (spread) to avoid mutating the memoised assetLedger reference.
+  //   Sorting supports three fields:
+  //     totalClaims — identifies highest-exposure assets (PRD requirement: "Highest Claims")
+  //     dueDate     — upcoming payment management (PRD requirement: "Due Date")
+  //     premiumDue  — largest premium contributors first
+  //   The dir multiplier inverts the comparator for descending order.
   const sortedLedger = useMemo(() => {
     return [...assetLedger].sort((a, b) => {
       const dir = sortDir === 'desc' ? -1 : 1;
@@ -70,22 +156,46 @@ export default function ConservativeDashboard() {
     });
   }, [assetLedger, sortField, sortDir]);
 
+  /**
+   * toggleSort — handles column header clicks in the asset ledger.
+   * Clicking the active sort column reverses direction (asc ↔ desc).
+   * Clicking a new column sets it as active with 'desc' as default
+   * (most useful direction first for financial data).
+   */
   const toggleSort = (field) => {
     if (sortField === field) setSortDir(d => d === 'desc' ? 'asc' : 'desc');
     else { setSortField(field); setSortDir('desc'); }
   };
 
+  /**
+   * toggleSeries — flips the visibility of a single chart data series.
+   * Uses functional state update to avoid stale closure over activeSeries.
+   * Spreading `prev` preserves the state of all other series.
+   */
   const toggleSeries = (key) =>
     setActiveSeries(prev => ({ ...prev, [key]: !prev[key] }));
 
+  // Loss ratio per portfolio segment = (claims paid) / (premiums owed).
+  // Guarded against division by zero for empty portfolios.
+  // Used to fill the progress bar indicator on the split KPI tiles.
   const propLossRatio = kpis.propertyOwed > 0
     ? (kpis.propertyClaimed / kpis.propertyOwed) * 100 : 0;
   const autoLossRatio = kpis.autoOwed > 0
     ? (kpis.autoClaimed / kpis.autoOwed) * 100 : 0;
 
+  // ── Render ─────────────────────────────────────────────────────────────────
   return (
     <div className="conservative-dashboard">
-      {/* ── Filter Bar ── */}
+      {/*
+       * ── Section 1: Filter Bar ────────────────────────────────────────────
+       * Controls three independent filter states:
+       *   grossNet  — Carbon ContentSwitcher (two-position toggle)
+       *   timeframe — Carbon Select (12m / 6m / YTD)
+       *   region    — Carbon Select (prototype-level, UI only)
+       *
+       * All three are uncontrolled selections that cascade into memoised
+       * derived data (kpis, chartData) via the state variables above.
+       */}
       <div className="con-filter-bar">
         <div className="con-filter-group">
           <span className="con-filter-label">View</span>
@@ -130,7 +240,18 @@ export default function ConservativeDashboard() {
         </div>
       </div>
 
-      {/* ── KPI Cards ── */}
+      {/*
+       * ── Section 2: KPI Cards ─────────────────────────────────────────────
+       * Four Carbon Tiles in a 4-column Grid layout (lg=4 each).
+       *
+       * Card 1: Total Owed (YTD)   — top-line premium aggregate with auto/property split
+       * Card 2: Total Claimed (YTD) — top-line claims aggregate with auto/property split
+       * Card 3: Property Portfolio — owed amount + inline loss-ratio progress bar
+       * Card 4: Auto Portfolio     — owed amount + inline loss-ratio progress bar
+       *
+       * The progress bars clamp at 100% (Math.min) to prevent visual overflow
+       * in edge cases where claims temporarily exceed premiums in a single period.
+       */}
       <Grid fullWidth className="con-kpi-grid">
         <Column lg={4} md={4} sm={4}>
           <Tile className="con-kpi-tile">
@@ -195,7 +316,22 @@ export default function ConservativeDashboard() {
         </Column>
       </Grid>
 
-      {/* ── Chart ── */}
+      {/*
+       * ── Section 3: Expense Visualization ────────────────────────────────
+       * Recharts LineChart rendering up to 4 time series simultaneously.
+       *
+       * Series are conditionally rendered (null when hidden) rather than
+       * using opacity/display:none so Recharts excludes them from the tooltip
+       * and legend entirely — cleaner UX when toggling.
+       *
+       * dot prop: Claims lines show data-point dots (r=3) to highlight the
+       * volatility of individual claim events; premium lines omit dots (false)
+       * since they are smooth steady-growth curves.
+       *
+       * Tooltip contentStyle: Reads CSS custom properties at runtime so the
+       * tooltip background adapts to light/dark theme switching.
+       * (Recharts tooltip uses inline styles, so CSS variables work here.)
+       */}
       <div className="con-chart-section">
         <Tile className="con-chart-tile">
           <div className="con-chart-header">
@@ -260,7 +396,24 @@ export default function ConservativeDashboard() {
         </Tile>
       </div>
 
-      {/* ── Asset Performance Ledger ── */}
+      {/*
+       * ── Section 4: Asset Performance Ledger ─────────────────────────────
+       * Custom sortable table rather than Carbon DataTable, keeping full
+       * control over row-click navigation to the drill-down detail page.
+       *
+       * Sortable columns: Premium Due, Due Date, Total Claims.
+       * Non-sortable columns: Asset Name, Category, Action.
+       *
+       * Click behaviour:
+       *   Whole row  → navigate to /financial/asset/:id (drill-down)
+       *   Action btn → same navigation, stopPropagation prevents double-fire
+       *
+       * Zero-claim assets show "—" in the Total Claims cell rather than $0.00
+       * to visually distinguish "no history" from "claimed $0".
+       *
+       * Category tags use Carbon's built-in Tag component:
+       *   'blue' for Property assets, 'cyan' for Auto assets.
+       */}
       <div className="con-ledger-section">
         <Tile className="con-ledger-tile">
           <div className="con-ledger-header">
