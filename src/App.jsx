@@ -20,6 +20,8 @@ import AddVehiclePage from "./pages/business/AddVehiclePage";
 import FileClaimPage from "./pages/business/FileClaimPage";
 import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
+import FinancialDashboard from "./pages/financial/FinancialDashboard";
+import AssetDetailPage from "./pages/financial/AssetDetailPage";
 
 export default function App() {
   return (
@@ -48,6 +50,10 @@ export default function App() {
         <Route path="/business/payments" element={<BusinessComingSoon />} />
         <Route path="/business/file-claim" element={<FileClaimPage />} />
         <Route path="/business/make-payment" element={<MakePaymentPage />} />
+
+        {/* Financial Analytics Dashboard */}
+        <Route path="/financial/dashboard" element={<FinancialDashboard />} />
+        <Route path="/financial/asset/:assetId" element={<AssetDetailPage />} />
       </Routes>
     </Layout>
   );

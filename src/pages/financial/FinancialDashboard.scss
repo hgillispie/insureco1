@@ -1,0 +1,33 @@
+@use '../../styles/tokens' as *;
+
+.financial-dashboard-page {
+  background: var(--background-primary);
+  min-height: 100vh;
+
+  .financial-page-header {
+    padding: var(--spacing-07) var(--spacing-07) var(--spacing-05);
+    border-bottom: 1px solid var(--border-subtle);
+
+    .financial-page-title {
+      font-size: var(--heading-h2-size);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      margin: 0 0 var(--spacing-02);
+    }
+
+    .financial-page-subtitle {
+      font-size: var(--body-medium-size);
+      color: var(--text-secondary);
+      margin: 0;
+    }
+  }
+
+  .variant-tab-list {
+    background: var(--background-secondary);
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .variant-tab-panel {
+    padding: 0;
+  }
+}
