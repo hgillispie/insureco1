@@ -16,9 +16,8 @@ import {
   Home as HomeIcon,
   CheckmarkFilled,
   ArrowRight,
-  Calculate,
+  Calculator,
   Time,
-  Shield,
 } from '@carbon/icons-react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.scss';
@@ -87,7 +86,7 @@ export default function LandingPage() {
                   kind="primary"
                   size="lg"
                   onClick={() => navigate('/quote')}
-                  renderIcon={Calculate}
+                  renderIcon={Calculator}
                 >
                   Get Instant Quote
                 </Button>
@@ -232,7 +231,7 @@ export default function LandingPage() {
                 <div className="quote-cta-arrow"><ArrowRight size={24} /></div>
                 <div className="quote-cta-step">
                   <div className="quote-cta-step-number">3</div>
-                  <div className="quote-cta-step-icon"><Shield size={28} /></div>
+                  <div className="quote-cta-step-icon"><Security size={28} /></div>
                   <h3 className="quote-cta-step-title">Get Your Estimate</h3>
                   <p className="quote-cta-step-text">See your personalized rate and start your application.</p>
                 </div>

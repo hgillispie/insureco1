@@ -16,7 +16,7 @@ import {
   ArrowRight,
   ArrowLeft,
   CheckmarkFilled,
-  Calculate,
+  Calculator,
 } from '@carbon/icons-react';
 import { useNavigate } from 'react-router-dom';
 import './QuotePage.scss';
@@ -136,7 +136,7 @@ export default function QuotePage() {
           <Column lg={16} md={8} sm={4}>
             <div className="quote-header-content">
               <div className="quote-header-icon">
-                <Calculate size={40} />
+                <Calculator size={40} />
               </div>
               <Heading className="quote-page-title">Get Your Instant Quote</Heading>
               <p className="quote-page-subtitle">
