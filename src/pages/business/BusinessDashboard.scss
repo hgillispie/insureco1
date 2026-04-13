@@ -208,6 +208,80 @@
     }
   }
 
+  // Risk Score Tile (special variant)
+  .risk-score-tile {
+    .stat-icon-risk {
+      background: rgba(218, 30, 40, 0.1);
+
+      svg {
+        fill: var(--interactive-primary);
+      }
+    }
+
+    .stat-value-suffix {
+      font-size: 16px;
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-secondary);
+      margin-left: 2px;
+    }
+
+    .stat-change-negative {
+      color: var(--color-brand-red-60);
+    }
+
+    .stat-content {
+      flex-wrap: wrap;
+      gap: var(--spacing-04);
+    }
+  }
+
+  .risk-score-cta {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-02);
+    align-items: flex-start;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: var(--spacing-02);
+
+    &:hover .risk-score-cta__link {
+      color: var(--interactive-primary);
+    }
+
+    &__badge {
+      display: inline-block;
+      font-size: var(--body-sm-size);
+      font-weight: var(--font-weight-semibold);
+      border-radius: var(--radius-sm);
+      padding: 2px 8px;
+
+      &--high {
+        background: rgba(218, 30, 40, 0.1);
+        color: var(--color-brand-red-60);
+      }
+
+      &--recs {
+        background: var(--background-tertiary);
+        color: var(--text-secondary);
+      }
+    }
+
+    &__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      font-size: var(--body-sm-size);
+      color: var(--text-secondary);
+      transition: color 0.2s ease;
+
+      svg {
+        fill: currentColor;
+      }
+    }
+  }
+
   // Data Table Tiles
   .data-tile {
     margin-bottom: var(--spacing-08);

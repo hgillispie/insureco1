@@ -80,6 +80,9 @@ export default function Layout({ children }) {
                   <HeaderMenuItem element={Link} to="/business/map">
                     Map View
                   </HeaderMenuItem>
+                  <HeaderMenuItem element={Link} to="/business/risk">
+                    Risk Intelligence
+                  </HeaderMenuItem>
                   <HeaderMenuItem element={Link} to="/business/claims">
                     Claims
                   </HeaderMenuItem>
@@ -157,6 +160,13 @@ export default function Layout({ children }) {
                         onClick={isSideNavExpanded ? onClickSideNavExpand : undefined}
                       >
                         Map View
+                      </SideNavMenuItem>
+                      <SideNavMenuItem
+                        element={Link}
+                        to="/business/risk"
+                        onClick={isSideNavExpanded ? onClickSideNavExpand : undefined}
+                      >
+                        Risk Intelligence
                       </SideNavMenuItem>
                       <SideNavMenuItem
                         element={Link}

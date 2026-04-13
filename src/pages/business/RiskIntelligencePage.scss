@@ -1,0 +1,681 @@
+@use '../../styles/tokens' as *;
+
+// ============================================================
+// Risk Intelligence Page — Layout & Shared
+// ============================================================
+
+.risk-intelligence-page {
+  padding: var(--spacing-06);
+  background: var(--background-primary);
+
+  @media (min-width: 672px) {
+    padding: var(--spacing-07);
+  }
+
+  @media (min-width: 1056px) {
+    padding: var(--spacing-09);
+  }
+}
+
+// ============================================================
+// Page Header
+// ============================================================
+
+.page-header {
+  margin-bottom: var(--spacing-06);
+}
+
+.page-title {
+  font-size: var(--heading-h2-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-03) 0;
+
+  @media (min-width: 672px) {
+    font-size: var(--heading-h1-size);
+  }
+}
+
+.page-subtitle {
+  font-size: var(--body-md-size);
+  color: var(--text-secondary);
+  margin: 0;
+
+  @media (min-width: 672px) {
+    font-size: var(--body-lg-size);
+  }
+}
+
+// ============================================================
+// Section Titles
+// ============================================================
+
+.section-title {
+  font-size: var(--heading-h3-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+  margin: 0 0 var(--spacing-05) 0;
+
+  &.section-title--inline {
+    margin: 0;
+  }
+}
+
+// ============================================================
+// Alerts
+// ============================================================
+
+.alerts-section {
+  margin-bottom: var(--spacing-06);
+
+  .risk-alert {
+    margin-bottom: var(--spacing-03);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+// ============================================================
+// Overview Tiles
+// ============================================================
+
+.overview-tile {
+  background: var(--background-secondary);
+  border-radius: var(--radius-md);
+  margin-bottom: var(--spacing-06);
+  padding: var(--spacing-06);
+
+  .overview-tile__label {
+    font-size: var(--body-sm-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0 0 var(--spacing-05) 0;
+  }
+
+  // ----- Gauge tile -----
+  &.overview-tile--gauge {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    min-height: 340px;
+  }
+
+  // ----- Categories tile -----
+  &.overview-tile--categories {
+    .category-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-05);
+    }
+
+    .category-row {
+      &__header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: var(--spacing-02);
+      }
+
+      &__name {
+        font-size: var(--body-md-size);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+      }
+
+      &__meta {
+        display: flex;
+        align-items: center;
+        gap: var(--spacing-03);
+      }
+
+      &__score {
+        font-size: var(--body-md-size);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-primary);
+      }
+
+      &__desc {
+        font-size: var(--body-sm-size);
+        color: var(--text-tertiary);
+        margin: var(--spacing-02) 0 0 0;
+      }
+    }
+  }
+}
+
+// ============================================================
+// Risk Gauge SVG
+// ============================================================
+
+.risk-gauge {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin-bottom: var(--spacing-04);
+
+  .gauge-svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gauge-progress {
+    transition: stroke-dashoffset 0.8s ease-in-out, stroke 0.4s ease;
+  }
+
+  .gauge-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    .gauge-score {
+      font-size: 36px;
+      font-weight: var(--font-weight-bold);
+      color: var(--text-primary);
+      line-height: 1;
+    }
+
+    .gauge-label {
+      font-size: var(--body-sm-size);
+      color: var(--text-tertiary);
+    }
+  }
+}
+
+// ============================================================
+// Trend Badge
+// ============================================================
+
+.overview-tile__trend {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-02);
+  margin-bottom: var(--spacing-05);
+}
+
+.overview-tile__trend-note {
+  font-size: var(--body-sm-size);
+  color: var(--text-tertiary);
+}
+
+.trend-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  font-size: var(--body-sm-size);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+
+  svg {
+    flex-shrink: 0;
+  }
+
+  &--improving {
+    background: rgba(36, 161, 72, 0.12);
+    color: var(--color-success);
+
+    svg {
+      fill: var(--color-success);
+    }
+  }
+
+  &--declining {
+    background: rgba(218, 30, 40, 0.1);
+    color: var(--color-error);
+
+    svg {
+      fill: var(--color-error);
+    }
+  }
+
+  &--stable {
+    background: var(--background-tertiary);
+    color: var(--text-secondary);
+
+    svg {
+      fill: var(--text-secondary);
+    }
+  }
+}
+
+// ============================================================
+// Trend Sparkline
+// ============================================================
+
+.trend-sparkline {
+  width: 100%;
+  height: 48px;
+}
+
+// ============================================================
+// Trend Bar Chart (simple)
+// ============================================================
+
+.trend-chart-wrapper {
+  width: 100%;
+  margin-top: var(--spacing-04);
+
+  .trend-chart-label {
+    font-size: var(--body-sm-size);
+    color: var(--text-tertiary);
+    margin: 0 0 var(--spacing-02) 0;
+  }
+
+  .trend-chart-row {
+    display: flex;
+    align-items: flex-end;
+    gap: var(--spacing-02);
+    height: 56px;
+  }
+
+  .trend-chart-bar-col {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    height: 100%;
+  }
+
+  .trend-chart-bar {
+    width: 100%;
+    background: var(--interactive-primary);
+    border-radius: var(--radius-sm) var(--radius-sm) 0 0;
+    min-height: 4px;
+    transition: height 0.4s ease;
+    opacity: 0.7;
+
+    &:last-of-type {
+      opacity: 1;
+    }
+  }
+
+  .trend-chart-month {
+    font-size: 10px;
+    color: var(--text-tertiary);
+    text-align: center;
+    white-space: nowrap;
+  }
+}
+
+// ============================================================
+// Score Bar (mini horizontal bar in category breakdown)
+// ============================================================
+
+.score-bar {
+  width: 100%;
+  height: 6px;
+  background: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+
+  &__fill {
+    height: 100%;
+    border-radius: var(--radius-sm);
+    transition: width 0.6s ease;
+  }
+}
+
+// ============================================================
+// Asset Count Tiles (high / medium / recommendations)
+// ============================================================
+
+.asset-count-grid {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+  margin-bottom: var(--spacing-06);
+  height: 100%;
+}
+
+.asset-count-tile {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-02);
+  padding: var(--spacing-05);
+  border-radius: var(--radius-md);
+  border-left: 3px solid transparent;
+
+  .asset-count-icon {
+    margin-bottom: var(--spacing-02);
+  }
+
+  .asset-count-value {
+    font-size: 28px;
+    font-weight: var(--font-weight-bold);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1;
+  }
+
+  .asset-count-label {
+    font-size: var(--body-md-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .asset-count-note {
+    font-size: var(--body-sm-size);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  &--high {
+    background: var(--background-secondary);
+    border-left-color: var(--color-error);
+
+    .asset-count-icon {
+      fill: var(--color-error);
+    }
+  }
+
+  &--medium {
+    background: var(--background-secondary);
+    border-left-color: var(--color-warning);
+
+    .asset-count-icon {
+      fill: var(--color-warning);
+    }
+  }
+
+  &--recommendations {
+    background: var(--background-secondary);
+    border-left-color: var(--interactive-primary);
+
+    .asset-count-icon {
+      fill: var(--interactive-primary);
+    }
+  }
+}
+
+// ============================================================
+// Asset Risk Table
+// ============================================================
+
+.asset-table-tile {
+  background: var(--background-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-06);
+  margin-bottom: var(--spacing-07);
+
+  .asset-table-header {
+    margin-bottom: var(--spacing-05);
+  }
+
+  .asset-table-subtitle {
+    font-size: var(--body-sm-size);
+    color: var(--text-secondary);
+    margin: var(--spacing-02) 0 0 0;
+  }
+}
+
+.asset-table-scroll {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.asset-risk-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 620px;
+
+  thead tr {
+    border-bottom: 2px solid var(--border-subtle);
+  }
+
+  th {
+    padding: var(--spacing-03) var(--spacing-04);
+    font-size: var(--body-sm-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-secondary);
+    text-align: left;
+    white-space: nowrap;
+    background: var(--background-secondary);
+    position: sticky;
+    top: 0;
+
+    &.sortable {
+      cursor: pointer;
+      user-select: none;
+
+      &:hover {
+        color: var(--text-primary);
+      }
+
+      &.sorted {
+        color: var(--interactive-primary);
+      }
+    }
+  }
+
+  tbody tr {
+    border-bottom: 1px solid var(--border-subtle);
+    cursor: pointer;
+    transition: background 0.15s ease;
+
+    &:hover {
+      background: var(--background-hover);
+    }
+
+    &:focus {
+      outline: 2px solid var(--interactive-primary);
+      outline-offset: -2px;
+    }
+
+    &.asset-row--high {
+      &:hover {
+        background: rgba(218, 30, 40, 0.05);
+      }
+    }
+  }
+
+  td {
+    padding: var(--spacing-04);
+    font-size: var(--body-md-size);
+    color: var(--text-primary);
+    vertical-align: middle;
+  }
+
+  // Column widths
+  .col-type { width: 36px; }
+  .col-name { min-width: 160px; }
+  .col-location { min-width: 140px; color: var(--text-secondary); font-size: var(--body-sm-size); }
+  .col-claims { width: 60px; text-align: center; }
+  .col-risk-level { width: 110px; }
+  .col-score { width: 70px; text-align: center; }
+  .col-action { width: 32px; }
+}
+
+// Asset type icon in table
+.asset-type-icon {
+  fill: var(--text-secondary);
+  display: block;
+}
+
+// Asset name + subtype stacked in cell
+.asset-name {
+  display: block;
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.asset-subtype {
+  display: block;
+  font-size: var(--body-sm-size);
+  color: var(--text-tertiary);
+}
+
+// Score badge in table cell
+.score-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: var(--radius-sm);
+  font-weight: var(--font-weight-bold);
+  font-size: var(--body-sm-size);
+
+  &--low {
+    background: rgba(25, 128, 56, 0.12);
+    color: var(--color-success);
+  }
+
+  &--medium {
+    background: rgba(214, 160, 0, 0.12);
+    color: var(--color-warning);
+  }
+
+  &--high {
+    background: rgba(218, 30, 40, 0.1);
+    color: var(--color-error);
+  }
+}
+
+// Chevron in last column
+.row-chevron {
+  fill: var(--text-tertiary);
+  display: block;
+}
+
+// ============================================================
+// Recommendations Section
+// ============================================================
+
+.recommendations-header {
+  margin-bottom: var(--spacing-05);
+
+  .recommendations-subtitle {
+    font-size: var(--body-md-size);
+    color: var(--text-secondary);
+    margin: var(--spacing-02) 0 0 0;
+  }
+}
+
+.rec-card {
+  background: var(--background-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-06);
+  margin-bottom: var(--spacing-05);
+  border-left: 4px solid transparent;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+
+  &--high {
+    border-left-color: var(--color-support-error);
+  }
+
+  &--medium {
+    border-left-color: var(--color-support-warning);
+  }
+
+  .rec-card__header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+  }
+
+  .rec-priority-tag {
+    flex-shrink: 0;
+  }
+
+  .rec-category {
+    font-size: var(--body-sm-size);
+    color: var(--text-secondary);
+  }
+
+  .rec-card__title {
+    font-size: var(--body-lg-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  .rec-card__asset {
+    font-size: var(--body-sm-size);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+
+  .rec-card__description {
+    font-size: var(--body-md-size);
+    color: var(--text-primary);
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .rec-card__impact {
+    display: flex;
+    gap: var(--spacing-07);
+    padding: var(--spacing-04);
+    background: var(--background-tertiary);
+    border-radius: var(--radius-md);
+  }
+
+  .rec-impact-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+
+    .rec-impact-value {
+      font-size: var(--body-lg-size);
+      font-weight: var(--font-weight-bold);
+      color: var(--interactive-primary);
+    }
+
+    .rec-impact-label {
+      font-size: var(--body-sm-size);
+      color: var(--text-secondary);
+    }
+  }
+
+  .rec-card__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-03);
+    align-items: center;
+  }
+}
+
+// ============================================================
+// No recommendations state
+// ============================================================
+
+.no-recs-tile {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-04);
+  background: var(--background-secondary);
+  border-radius: var(--radius-md);
+  padding: var(--spacing-06);
+  margin-bottom: var(--spacing-07);
+
+  .no-recs-icon {
+    fill: var(--color-success);
+    flex-shrink: 0;
+  }
+
+  .no-recs-text {
+    font-size: var(--body-md-size);
+    color: var(--text-secondary);
+    margin: 0;
+  }
+}
+
+// ============================================================
+// Bottom spacer
+// ============================================================
+
+.page-bottom-spacer {
+  height: var(--spacing-09);
+}

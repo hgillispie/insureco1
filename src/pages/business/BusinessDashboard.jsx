@@ -15,7 +15,9 @@ import {
   DocumentAdd,
   Wallet,
   ArrowRight,
+  Warning,
 } from '@carbon/icons-react';
+import { portfolioRiskSummary } from '../../data/riskData';
 import PropertyTable from '../../components/business/PropertyTable';
 import FleetTable from '../../components/business/FleetTable';
 import {
@@ -34,6 +36,10 @@ import './BusinessDashboard.scss';
  */
 export default function BusinessDashboard() {
   const navigate = useNavigate();
+
+  // Risk summary
+  const { overallScore, previousScore, trend, highRiskAssets, pendingRecommendations } = portfolioRiskSummary;
+  const riskTrendDiff = overallScore - previousScore;
 
   // Calculate statistics from mock data
   const totalProperties = mockProperties.length;
@@ -125,6 +131,36 @@ export default function BusinessDashboard() {
             <ArrowRight size={20} className="action-arrow" />
           </ClickableTile>
         </div>
+      </Column>
+
+      {/* Risk Score Card */}
+      <Column lg={6} md={8} sm={4}>
+        <Tile className="stat-tile risk-score-tile">
+          <div className="stat-content">
+            <div className="stat-icon-wrapper stat-icon-risk">
+              <Warning size={20} />
+            </div>
+            <div className="stat-details">
+              <p className="stat-label">Risk Score</p>
+              <h3 className="stat-value">
+                {overallScore}
+                <span className="stat-value-suffix">/100</span>
+              </h3>
+              <p className={`stat-change ${trend === 'improving' ? 'stat-change-positive' : trend === 'declining' ? 'stat-change-negative' : ''}`}>
+                {trend === 'improving' ? `▲ +${riskTrendDiff}` : trend === 'declining' ? `▼ ${riskTrendDiff}` : '— Stable'} vs last month
+              </p>
+            </div>
+            <button
+              className="risk-score-cta"
+              onClick={() => navigate('/business/risk')}
+              aria-label="View Risk Intelligence dashboard"
+            >
+              <span className="risk-score-cta__badge risk-score-cta__badge--high">{highRiskAssets} high-risk</span>
+              <span className="risk-score-cta__badge risk-score-cta__badge--recs">{pendingRecommendations} recommendations</span>
+              <span className="risk-score-cta__link">View Risk Intelligence <ArrowRight size={14} /></span>
+            </button>
+          </div>
+        </Tile>
       </Column>
 
       {/* Summary Stats */}

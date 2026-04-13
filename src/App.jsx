@@ -19,6 +19,7 @@ import AddVehiclePage from "./pages/business/AddVehiclePage";
 import FileClaimPage from "./pages/business/FileClaimPage";
 import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
+import RiskIntelligencePage from "./pages/business/RiskIntelligencePage";
 
 export default function App() {
   return (
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/business/fleet/add" element={<AddVehiclePage />} />
         <Route path="/business/fleet/:vehicleId" element={<VehicleDetailPage />} />
         <Route path="/business/map" element={<MapPage />} />
+        <Route path="/business/risk" element={<RiskIntelligencePage />} />
         <Route path="/business/claims" element={<BusinessComingSoon />} />
         <Route path="/business/payments" element={<BusinessComingSoon />} />
         <Route path="/business/file-claim" element={<FileClaimPage />} />
