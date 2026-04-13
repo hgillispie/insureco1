@@ -16,6 +16,9 @@ import {
   Home as HomeIcon,
   CheckmarkFilled,
   ArrowRight,
+  Calculate,
+  Time,
+  Shield,
 } from '@carbon/icons-react';
 import { useNavigate } from 'react-router-dom';
 import './LandingPage.scss';
@@ -83,10 +86,10 @@ export default function LandingPage() {
                 <Button
                   kind="primary"
                   size="lg"
-                  onClick={() => navigate('/signup')}
-                  renderIcon={ArrowRight}
+                  onClick={() => navigate('/quote')}
+                  renderIcon={Calculate}
                 >
-                  Sign Up Now
+                  Get Instant Quote
                 </Button>
                 <Button
                   kind="secondary"
@@ -203,6 +206,50 @@ export default function LandingPage() {
         </Grid>
       </section>
 
+      {/* Instant Quote CTA Section */}
+      <section className="quote-cta-section">
+        <Grid>
+          <Column lg={16} md={8} sm={4}>
+            <div className="quote-cta-content">
+              <Heading className="section-heading">Get Your Quote in Minutes</Heading>
+              <p className="quote-cta-description">
+                No paperwork, no phone calls. Answer a few quick questions and get a personalized estimate instantly.
+              </p>
+              <div className="quote-cta-steps">
+                <div className="quote-cta-step">
+                  <div className="quote-cta-step-number">1</div>
+                  <div className="quote-cta-step-icon"><Car size={28} /></div>
+                  <h3 className="quote-cta-step-title">Choose Coverage</h3>
+                  <p className="quote-cta-step-text">Car, home, or bundle both for extra savings.</p>
+                </div>
+                <div className="quote-cta-arrow"><ArrowRight size={24} /></div>
+                <div className="quote-cta-step">
+                  <div className="quote-cta-step-number">2</div>
+                  <div className="quote-cta-step-icon"><Time size={28} /></div>
+                  <h3 className="quote-cta-step-title">Share Details</h3>
+                  <p className="quote-cta-step-text">A few quick questions about your vehicle or home.</p>
+                </div>
+                <div className="quote-cta-arrow"><ArrowRight size={24} /></div>
+                <div className="quote-cta-step">
+                  <div className="quote-cta-step-number">3</div>
+                  <div className="quote-cta-step-icon"><Shield size={28} /></div>
+                  <h3 className="quote-cta-step-title">Get Your Estimate</h3>
+                  <p className="quote-cta-step-text">See your personalized rate and start your application.</p>
+                </div>
+              </div>
+              <Button
+                kind="primary"
+                size="lg"
+                onClick={() => navigate('/quote')}
+                renderIcon={ArrowRight}
+              >
+                Start My Free Quote
+              </Button>
+            </div>
+          </Column>
+        </Grid>
+      </section>
+
       {/* Testimonials Section */}
       <section className="testimonials-section">
         <Grid>
@@ -239,7 +286,7 @@ export default function LandingPage() {
               <Button
                 kind="primary"
                 size="lg"
-                onClick={() => navigate('/signup')}
+                onClick={() => navigate('/quote')}
                 renderIcon={ArrowRight}
               >
                 Get Your Free Quote

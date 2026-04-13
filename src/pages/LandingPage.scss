@@ -216,6 +216,88 @@
   background: var(--background-secondary);
 }
 
+// Quote CTA Section
+.quote-cta-section {
+  padding: var(--spacing-10) var(--spacing-05);
+  background: var(--background-secondary);
+  text-align: center;
+
+  .quote-cta-content {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .quote-cta-description {
+    font-size: var(--body-lg-size);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-09);
+    margin-top: calc(var(--spacing-09) * -0.5);
+    line-height: var(--line-height-normal);
+  }
+
+  .quote-cta-steps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-05);
+    margin-bottom: var(--spacing-09);
+    flex-wrap: wrap;
+  }
+
+  .quote-cta-step {
+    flex: 1;
+    min-width: 160px;
+    max-width: 220px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+
+    .quote-cta-step-number {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--interactive-primary);
+      color: var(--text-on-color);
+      font-size: var(--body-sm-size);
+      font-weight: var(--font-weight-semibold);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--spacing-04);
+    }
+
+    .quote-cta-step-icon {
+      color: var(--interactive-primary);
+      margin-bottom: var(--spacing-04);
+    }
+
+    .quote-cta-step-title {
+      font-size: var(--body-lg-size);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+      margin-bottom: var(--spacing-03);
+    }
+
+    .quote-cta-step-text {
+      font-size: var(--body-sm-size);
+      color: var(--text-secondary);
+      line-height: var(--line-height-normal);
+    }
+  }
+
+  .quote-cta-arrow {
+    color: var(--border-strong);
+    flex-shrink: 0;
+    margin-bottom: var(--spacing-06);
+
+    @media (max-width: $breakpoint-md) {
+      display: none;
+    }
+  }
+}
+
 // Testimonials Section
 .testimonials-section {
   padding: var(--spacing-10) var(--spacing-05);
