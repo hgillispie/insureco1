@@ -1,0 +1,502 @@
+@use '../styles/tokens' as *;
+
+.quote-page {
+  min-height: 100vh;
+  background: var(--background-primary);
+}
+
+// ============================================
+// Page Header
+// ============================================
+.quote-header {
+  padding: var(--spacing-10) var(--spacing-05) var(--spacing-08);
+  background: var(--background-secondary);
+  text-align: center;
+  border-bottom: 1px solid var(--border-subtle);
+
+  .quote-header-content {
+    max-width: 640px;
+    margin: 0 auto;
+  }
+
+  .quote-header-icon {
+    color: var(--interactive-primary);
+    margin-bottom: var(--spacing-05);
+    display: flex;
+    justify-content: center;
+  }
+
+  .quote-page-title {
+    font-size: var(--heading-h2-size);
+    font-weight: var(--heading-h2-weight);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-04);
+  }
+
+  .quote-page-subtitle {
+    font-size: var(--body-lg-size);
+    color: var(--text-secondary);
+    line-height: var(--line-height-normal);
+  }
+}
+
+// ============================================
+// Step Progress Bar
+// ============================================
+.quote-steps-bar {
+  padding: var(--spacing-06) var(--spacing-05);
+  background: var(--background-primary);
+  border-bottom: 1px solid var(--border-subtle);
+
+  .step-indicators {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .step-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+    flex: 1;
+
+    &:last-child {
+      flex: 0;
+    }
+  }
+
+  .step-circle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 2px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: var(--body-sm-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-tertiary);
+    background: var(--background-primary);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+
+    .step-current & {
+      border-color: var(--interactive-primary);
+      color: var(--interactive-primary);
+    }
+
+    .step-complete & {
+      border-color: var(--interactive-primary);
+      background: var(--interactive-primary);
+      color: var(--text-on-color);
+    }
+  }
+
+  .step-label {
+    font-size: var(--body-sm-size);
+    color: var(--text-tertiary);
+    white-space: nowrap;
+
+    .step-current & {
+      color: var(--interactive-primary);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    .step-complete & {
+      color: var(--text-secondary);
+    }
+  }
+
+  .step-connector {
+    flex: 1;
+    height: 2px;
+    background: var(--border-subtle);
+    margin: 0 var(--spacing-03);
+    min-width: 20px;
+
+    .step-complete & {
+      background: var(--interactive-primary);
+    }
+  }
+}
+
+// ============================================
+// Form Section
+// ============================================
+.quote-form-section {
+  padding: var(--spacing-09) var(--spacing-05);
+}
+
+.quote-step {
+  animation: stepFadeIn 0.25s ease;
+}
+
+@keyframes stepFadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.step-question {
+  font-size: var(--heading-h3-size);
+  font-weight: var(--heading-h3-weight);
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-07);
+  text-align: center;
+}
+
+// ============================================
+// Coverage Type Cards
+// ============================================
+.coverage-type-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--spacing-05);
+  margin-bottom: var(--spacing-08);
+
+  @media (max-width: 672px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.coverage-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: var(--spacing-07) var(--spacing-05);
+  background: var(--background-secondary);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: inherit;
+  width: 100%;
+
+  &:hover {
+    border-color: var(--interactive-primary);
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+  }
+
+  &--selected {
+    border-color: var(--interactive-primary);
+    background: var(--background-selected);
+    box-shadow: 0 0 0 1px var(--interactive-primary);
+  }
+
+  .coverage-badge {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--interactive-primary);
+    color: var(--text-on-color);
+    font-size: 11px;
+    font-weight: var(--font-weight-semibold);
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+    letter-spacing: 0.5px;
+  }
+
+  .coverage-card-icon {
+    color: var(--interactive-primary);
+    margin-bottom: var(--spacing-04);
+  }
+
+  .coverage-card-label {
+    font-size: var(--body-lg-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-03);
+  }
+
+  .coverage-card-description {
+    font-size: var(--body-sm-size);
+    color: var(--text-secondary);
+    line-height: var(--line-height-normal);
+  }
+
+  .coverage-selected-check {
+    position: absolute;
+    top: var(--spacing-04);
+    right: var(--spacing-04);
+    color: var(--interactive-primary);
+  }
+}
+
+// ============================================
+// Details Step
+// ============================================
+.details-group {
+  background: var(--background-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-06);
+  margin-bottom: var(--spacing-06);
+  border: 1px solid var(--border-subtle);
+
+  &:last-of-type {
+    margin-bottom: var(--spacing-08);
+  }
+}
+
+.details-group-heading {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  font-size: var(--body-lg-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--interactive-primary);
+  margin-bottom: var(--spacing-06);
+  padding-bottom: var(--spacing-04);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.details-fields {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--spacing-05);
+}
+
+// ============================================
+// Step Actions
+// ============================================
+.step-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: var(--spacing-07);
+
+  &--split {
+    justify-content: space-between;
+  }
+
+  &--result {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-04);
+  }
+}
+
+// ============================================
+// Estimate Results
+// ============================================
+.quote-result-header {
+  text-align: center;
+  margin-bottom: var(--spacing-07);
+
+  .result-success-icon {
+    color: var(--color-success);
+    margin-bottom: var(--spacing-04);
+  }
+
+  .result-disclaimer {
+    font-size: var(--body-sm-size);
+    color: var(--text-tertiary);
+    margin-top: var(--spacing-02);
+  }
+}
+
+.estimate-main-tile {
+  text-align: center;
+  padding: var(--spacing-08) !important;
+  margin-bottom: var(--spacing-06);
+  border: 2px solid var(--interactive-primary) !important;
+  border-radius: var(--radius-lg) !important;
+
+  .estimate-label {
+    font-size: var(--body-md-size);
+    color: var(--text-secondary);
+    margin-bottom: var(--spacing-04);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .estimate-range {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: var(--spacing-03);
+    margin-bottom: var(--spacing-05);
+  }
+
+  .estimate-amount {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--interactive-primary);
+    line-height: 1;
+  }
+
+  .estimate-period {
+    font-size: var(--body-lg-size);
+    color: var(--text-secondary);
+  }
+
+  .bundle-savings-tag {
+    margin-top: var(--spacing-02);
+  }
+}
+
+// ============================================
+// Breakdown
+// ============================================
+.estimate-breakdown {
+  background: var(--background-secondary);
+  border-radius: var(--radius-lg);
+  padding: var(--spacing-06);
+  margin-bottom: var(--spacing-06);
+  border: 1px solid var(--border-subtle);
+
+  .breakdown-heading {
+    font-size: var(--body-lg-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-05);
+  }
+
+  .breakdown-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-04);
+  }
+
+  .breakdown-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+
+    &--total {
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+    }
+
+    .breakdown-icon {
+      color: var(--interactive-primary);
+      display: flex;
+    }
+
+    .breakdown-label {
+      flex: 1;
+      font-size: var(--body-md-size);
+      color: var(--text-secondary);
+
+      .breakdown-item--total & {
+        color: var(--text-primary);
+      }
+    }
+
+    .breakdown-value {
+      font-size: var(--body-md-size);
+      font-weight: var(--font-weight-semibold);
+      color: var(--text-primary);
+    }
+  }
+
+  .breakdown-divider {
+    height: 1px;
+    background: var(--border-subtle);
+    margin: var(--spacing-02) 0;
+  }
+}
+
+// ============================================
+// Includes
+// ============================================
+.estimate-includes {
+  margin-bottom: var(--spacing-08);
+
+  .includes-heading {
+    font-size: var(--body-lg-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-05);
+  }
+
+  .includes-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-03);
+  }
+
+  .include-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+    font-size: var(--body-md-size);
+    color: var(--text-secondary);
+
+    svg {
+      color: var(--color-success);
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ============================================
+// Trust Indicators
+// ============================================
+.quote-trust-section {
+  padding: var(--spacing-07) var(--spacing-05);
+  background: var(--background-secondary);
+  border-top: 1px solid var(--border-subtle);
+
+  .trust-items {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: var(--spacing-07);
+  }
+
+  .trust-item {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+    font-size: var(--body-sm-size);
+    color: var(--text-secondary);
+
+    svg {
+      color: var(--color-success);
+      flex-shrink: 0;
+    }
+  }
+}
+
+// ============================================
+// Responsive
+// ============================================
+@media (max-width: $breakpoint-md) {
+  .quote-header {
+    padding: var(--spacing-08) var(--spacing-05) var(--spacing-06);
+
+    .quote-page-title {
+      font-size: var(--heading-h3-size);
+    }
+  }
+
+  .step-label {
+    display: none;
+  }
+
+  .quote-form-section {
+    padding: var(--spacing-07) var(--spacing-05);
+  }
+
+  .estimate-main-tile {
+    .estimate-amount {
+      font-size: 2.25rem;
+    }
+  }
+
+  .step-actions--result {
+    width: 100%;
+
+    .cds--btn {
+      width: 100%;
+      max-width: 100%;
+    }
+  }
+}
