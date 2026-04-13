@@ -15,7 +15,7 @@ import {
   Gift,
   ArrowRight,
   ArrowLeft,
-  CheckmarkFilled,
+  CheckmarkOutline,
   Calculator,
 } from '@carbon/icons-react';
 import { useNavigate } from 'react-router-dom';
@@ -158,7 +158,7 @@ export default function QuotePage() {
                   className={`step-indicator ${idx < currentStep ? 'step-complete' : ''} ${idx === currentStep ? 'step-current' : ''}`}
                 >
                   <div className="step-circle">
-                    {idx < currentStep ? <CheckmarkFilled size={16} /> : <span>{idx + 1}</span>}
+                    {idx < currentStep ? <CheckmarkOutline size={16} /> : <span>{idx + 1}</span>}
                   </div>
                   <span className="step-label">{label}</span>
                   {idx < STEPS.length - 1 && <div className="step-connector" />}
@@ -193,7 +193,7 @@ export default function QuotePage() {
                       <p className="coverage-card-description">{option.description}</p>
                       {formData.coverageType === option.id && (
                         <div className="coverage-selected-check">
-                          <CheckmarkFilled size={20} />
+                          <CheckmarkOutline size={20} />
                         </div>
                       )}
                     </button>
@@ -324,7 +324,7 @@ export default function QuotePage() {
             {currentStep === 2 && estimate && (
               <div className="quote-step">
                 <div className="quote-result-header">
-                  <CheckmarkFilled size={40} className="result-success-icon" />
+                  <CheckmarkOutline size={40} className="result-success-icon" />
                   <h2 className="step-question">Your Personalized Estimate</h2>
                   <p className="result-disclaimer">Based on the information provided. Final rates may vary.</p>
                 </div>
@@ -373,20 +373,20 @@ export default function QuotePage() {
                   <div className="includes-list">
                     {(formData.coverageType === 'car' || formData.coverageType === 'bundle') && (
                       <>
-                        <div className="include-item"><CheckmarkFilled size={16} /> Collision & liability coverage</div>
-                        <div className="include-item"><CheckmarkFilled size={16} /> 24/7 roadside assistance</div>
-                        <div className="include-item"><CheckmarkFilled size={16} /> Rental car reimbursement</div>
+                        <div className="include-item"><CheckmarkOutline size={16} /> Collision & liability coverage</div>
+                        <div className="include-item"><CheckmarkOutline size={16} /> 24/7 roadside assistance</div>
+                        <div className="include-item"><CheckmarkOutline size={16} /> Rental car reimbursement</div>
                       </>
                     )}
                     {(formData.coverageType === 'home' || formData.coverageType === 'bundle') && (
                       <>
-                        <div className="include-item"><CheckmarkFilled size={16} /> Property damage protection</div>
-                        <div className="include-item"><CheckmarkFilled size={16} /> Personal liability coverage</div>
-                        <div className="include-item"><CheckmarkFilled size={16} /> Natural disaster coverage</div>
+                        <div className="include-item"><CheckmarkOutline size={16} /> Property damage protection</div>
+                        <div className="include-item"><CheckmarkOutline size={16} /> Personal liability coverage</div>
+                        <div className="include-item"><CheckmarkOutline size={16} /> Natural disaster coverage</div>
                       </>
                     )}
-                    <div className="include-item"><CheckmarkFilled size={16} /> No hidden fees</div>
-                    <div className="include-item"><CheckmarkFilled size={16} /> Cancel anytime</div>
+                    <div className="include-item"><CheckmarkOutline size={16} /> No hidden fees</div>
+                    <div className="include-item"><CheckmarkOutline size={16} /> Cancel anytime</div>
                   </div>
                 </div>
 
@@ -432,19 +432,19 @@ export default function QuotePage() {
           <Column lg={16} md={8} sm={4}>
             <div className="trust-items">
               <div className="trust-item">
-                <CheckmarkFilled size={20} />
+                <CheckmarkOutline size={20} />
                 <span>No commitment required</span>
               </div>
               <div className="trust-item">
-                <CheckmarkFilled size={20} />
+                <CheckmarkOutline size={20} />
                 <span>Your data is secure</span>
               </div>
               <div className="trust-item">
-                <CheckmarkFilled size={20} />
+                <CheckmarkOutline size={20} />
                 <span>No spam calls</span>
               </div>
               <div className="trust-item">
-                <CheckmarkFilled size={20} />
+                <CheckmarkOutline size={20} />
                 <span>Rates from top carriers</span>
               </div>
             </div>
