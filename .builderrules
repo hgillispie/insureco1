@@ -10,7 +10,7 @@ description: Component structure
 globs:
 alwaysApply: false
 ---
-#install nad use Recharts if there is a need to create data visualizations outside the scope of IBM Carbon
+#install and use Recharts if there is a need to create data visualizations outside the scope of IBM Carbon
 
 ############################
 
