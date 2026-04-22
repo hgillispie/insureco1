@@ -200,7 +200,7 @@ export default function MapView({ properties = [], vehicles = [], selectedAssetT
                         kind="primary"
                         size="sm"
                         className="popup-button"
-                        onClick={() => navigate(`/business/properties/${property.id}`)}
+                        onClick={() => navigate(`/business/properties/${property.id}`, { state: { from: 'map' } })}
                       >
                         View Details
                       </Button>
@@ -269,7 +269,7 @@ export default function MapView({ properties = [], vehicles = [], selectedAssetT
                         kind="primary"
                         size="sm"
                         className="popup-button"
-                        onClick={() => navigate(`/business/fleet/${vehicle.id}`)}
+                        onClick={() => navigate(`/business/fleet/${vehicle.id}`, { state: { from: 'map' } })}
                       >
                         View Details
                       </Button>

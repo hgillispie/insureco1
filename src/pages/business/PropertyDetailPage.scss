@@ -23,6 +23,19 @@
       gap: var(--spacing-04);
     }
 
+    .back-nav-buttons {
+      display: flex;
+      gap: var(--spacing-02);
+      flex-wrap: wrap;
+
+      .back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: var(--spacing-02);
+        padding-left: 0;
+      }
+    }
+
     .header-title {
       display: flex;
       align-items: flex-start;
