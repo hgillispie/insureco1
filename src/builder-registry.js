@@ -4,6 +4,7 @@ import BlogCardGrid from "./components/builder/BlogCardGrid";
 import BlogAuthorBio from "./components/builder/BlogAuthorBio";
 import BlogRichText from "./components/builder/BlogRichText";
 import CallToAction from "./components/builder/CallToAction";
+import FeaturedStory from "./components/builder/FeaturedStory";
 
 /**
  * Custom components registered with Builder.io.
@@ -82,6 +83,20 @@ const builderCustomComponents = [
         defaultValue: "primary",
         enum: ["primary", "secondary"],
       },
+    ],
+  },
+  {
+    component: FeaturedStory,
+    name: "FeaturedStory",
+    inputs: [
+      { name: "bannerLabel", type: "string", defaultValue: "FEATURED" },
+      { name: "bannerTitle", type: "string", defaultValue: "Featured Story" },
+      { name: "articleTitle", type: "string", defaultValue: "Transforming Enterprise Design Systems: A Journey Through Innovation and Collaboration" },
+      { name: "description", type: "string", defaultValue: "Explore how modern design systems are revolutionizing the way enterprise teams collaborate, build, and scale digital experiences." },
+      { name: "readTime", type: "string", defaultValue: "5 min read" },
+      { name: "category", type: "string", defaultValue: "Design Systems" },
+      { name: "linkUrl", type: "url", defaultValue: "#" },
+      { name: "linkText", type: "string", defaultValue: "Read full story" },
     ],
   },
 ];
