@@ -81,6 +81,7 @@ export default function LandingPage() {
               </p>
               <div className="hero-actions">
                 <Button
+                  className="hero-signup-button"
                   kind="primary"
                   size="lg"
                   onClick={() => navigate('/signup')}

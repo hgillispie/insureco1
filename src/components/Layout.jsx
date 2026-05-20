@@ -59,7 +59,10 @@ export default function Layout({ children }) {
                 Insurance
               </HeaderName>
               <HeaderNavigation aria-label="InsureCo Navigation">
-                <HeaderMenuItem onClick={() => navigate("/")}>
+                <HeaderMenuItem
+                  className="header-home-link"
+                  onClick={() => navigate("/")}
+                >
                   Home
                 </HeaderMenuItem>
                 <HeaderMenuItem onClick={() => navigate("/dashboard")}>

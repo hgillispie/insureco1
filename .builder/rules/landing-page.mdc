@@ -27,10 +27,11 @@ The landing page (`src/pages/LandingPage.jsx`) is the marketing home page for In
   - Two CTA buttons:
     - "Sign Up Now" → navigates to `/signup`
     - "Get a Demo" → opens demo request modal
-- **Styling**: 
+- **Styling**:
   - Full-width section with brand gradient background (red tones)
   - White text for high contrast
   - Minimum height: 600px (500px on mobile)
+  - The primary hero CTA uses `hero-signup-button` for a scoped Carbon button background override from visual editing; do not move that color into the global button styles.
 
 ### 2. Features Section
 - **Purpose**: Highlight key benefits of InsureCo
@@ -185,7 +186,7 @@ const isLandingPage = location.pathname === '/';
     padding: isLandingPage ? 0 : undefined 
   }}
 >
-```
+
 
 ### Header Behavior
 - Header remains visible on landing page

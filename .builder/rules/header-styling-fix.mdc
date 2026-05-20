@@ -68,7 +68,7 @@ Created dedicated header styling with comprehensive overrides:
     background-color: transparent !important;
   }
 }
-```
+
 
 #### 2. `src/styles/components.scss`
 Added similar overrides in the global components stylesheet for consistency.
@@ -128,6 +128,7 @@ To verify the fix works in both themes:
 - ✅ HeaderName (brand text "InsureCo Insurance")
 - ✅ HeaderName prefix
 - ✅ Navigation menu items (Home, Dashboard, Sign Up, About)
+- ✅ Header Home link scoped visual border via `header-home-link`
 - ✅ Header action buttons (Search, Notifications, Theme Toggle, App Switcher)
 - ✅ Hamburger menu button
 - ✅ Side navigation panel
