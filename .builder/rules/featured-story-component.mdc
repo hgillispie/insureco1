@@ -1,0 +1,44 @@
+---
+description: FeaturedStory Builder component documentation
+globs:
+alwaysApply: false
+---
+
+# FeaturedStory Builder Component
+
+## Overview
+
+A featured article card component registered with Builder Publish. Displays a colored banner header with a badge and title, followed by article metadata (title, description, CTA, read time, category).
+
+## Files
+
+- **Component**: `src/components/builder/FeaturedStory.jsx`
+- **Styles**: `src/components/builder/FeaturedStory.scss`
+- **Registry**: `src/builder-registry.js`
+- **Preview Route**: `/featured-story-preview` → `src/pages/FeaturedStoryPreview.jsx`
+
+## Props / Builder Inputs
+
+| Prop | Type | Default | Description |
+|---|---|---|---|
+| `badge` | string | "FEATURED" | Badge label in banner (leave empty to hide) |
+| `bannerTitle` | string | "Featured Story" | Large title shown in the colored banner |
+| `bannerColor` | color | "#0F62FE" | Background color of the banner section |
+| `title` | string | "Transforming Enterprise..." | Article headline |
+| `description` | longText | "Explore how modern..." | Article description/excerpt |
+| `ctaText` | string | "Read full story" | CTA button label |
+| `ctaUrl` | url | "#" | CTA button href |
+| `readTime` | string | "5 min read" | Read time metadata (leave empty to hide) |
+| `category` | string | "Design Systems" | Category metadata (leave empty to hide) |
+
+## Styling
+
+- Uses design tokens from `src/styles/tokens/`
+- Theme-aware: uses `var(--text-primary)`, `var(--text-secondary)`, `var(--background-primary)`
+- Responsive: stacks properly on mobile (min-width breakpoints: 672px)
+- CTA button uses Carbon's `<Button kind="danger">` (brand red)
+- Meta icons use Carbon `@carbon/icons-react`: `Time` and `Document`
+
+## Design Reference
+
+Based on Figma design: 720×541px card with a blue (#0F62FE) banner, FEATURED badge (pill, #D0E2FF bg / #0043CE text), 48px bold white title, article text body, and footer with CTA + meta items.
