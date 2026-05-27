@@ -1,0 +1,168 @@
+---
+description: FeaturedStory Builder component documentation - covers file locations, props, theming, styling architecture, responsive behavior, Builder.io registration, and usage guidelines
+globs:
+alwaysApply: false
+---
+
+# FeaturedStory Builder Component
+
+## Overview
+
+`FeaturedStory` is a featured article card component built for and registered with **Builder Publish**. It is designed to be placed on marketing pages, blog index pages, or any content-driven surface where a single "hero" article needs to stand out.
+
+The card has two primary zones:
+1. **Banner** — a full-width colored header area containing an optional badge pill and a large bold title. The background color is fully configurable via a Builder color-picker input, making it easy for content editors to match campaign themes without touching code.
+2. **Body** — the content area below the banner, containing the article headline, a short description excerpt, a primary CTA button, and an optional metadata row (estimated read time and category tag).
+
+All inputs are editable in the Builder visual editor, so non-technical content editors can configure every text value, color, and link without needing a developer.
+
+---
+
+## File Locations
+
+| Purpose | Path |
+|---|---|
+| React component | `src/components/builder/FeaturedStory.jsx` |
+| Component styles | `src/components/builder/FeaturedStory.scss` |
+| Builder registration | `src/builder-registry.js` |
+| Preview page (JSX) | `src/pages/FeaturedStoryPreview.jsx` |
+| Preview page (SCSS) | `src/pages/FeaturedStoryPreview.scss` |
+| App route | `/featured-story-preview` (defined in `src/App.jsx`) |
+| This documentation | `.builder/rules/featured-story-component.mdc` |
+
+---
+
+## Builder Registration
+
+The component is registered in `src/builder-registry.js` inside the `builderCustomComponents` array. This array is passed to the `customComponents` prop on any `<Content />` or `<Section />` component rendered by Builder Publish.
+
+Registration entry name: **`"FeaturedStory"`** — this is the name that appears in the Builder component picker UI.
+
+Each input in the registration maps directly to a React prop, and Builder uses the `type` field to determine which editor control to render (e.g., `"color"` renders a color picker, `"url"` renders a URL input with validation, `"longText"` renders a textarea).
+
+---
+
+## Props / Builder Inputs
+
+All props have sensible defaults so the component renders correctly when first dropped onto a Builder canvas with no configuration.
+
+| Prop | Builder Type | Default Value | Description |
+|---|---|---|---|
+| `badge` | `string` | `"FEATURED"` | Short uppercase label displayed in a pill in the top-left of the banner. Set to an empty string to hide the badge entirely. |
+| `bannerTitle` | `string` | `"Featured Story"` | Large bold title centered inside the colored banner. Typically a section label like "Featured Story" or "Editor's Pick". |
+| `bannerColor` | `color` | `"#0F62FE"` | Background color of the banner zone. Rendered as an inline `style` override on the banner `div` so it can be changed without touching the stylesheet. Any valid CSS color works. |
+| `title` | `string` | `"Transforming Enterprise Design Systems..."` | The article headline rendered below the banner. Uses the H3 heading style at 28px. |
+| `description` | `longText` | `"Explore how modern design systems..."` | Short excerpt or subtitle for the article. Rendered as body text at 16px in `--text-secondary` color. |
+| `ctaText` | `string` | `"Read full story"` | Label for the primary CTA button. |
+| `ctaUrl` | `url` | `"#"` | `href` destination for the CTA button. Builder validates this as a URL. |
+| `readTime` | `string` | `"5 min read"` | Estimated reading time displayed with a clock icon in the footer meta row. Set to an empty string to hide this item. |
+| `category` | `string` | `"Design Systems"` | Article category displayed with a document icon in the footer meta row. Set to an empty string to hide this item. |
+
+---
+
+## Component Architecture
+
+### JSX Structure
+
+
+<article.featured-story-card>
+  <div.featured-story-banner>          ← Colored banner (bannerColor applied as inline style)
+    <span.featured-story-badge />      ← Conditional — hidden if badge prop is empty
+    <h2.featured-story-banner-title />
+  </div>
+
+  <div.featured-story-body>
+    <h3.featured-story-title />
+    <p.featured-story-description />
+
+    <div.featured-story-footer>
+      <Button kind="danger" />         ← Carbon Button (brand red), renders as <a> when ctaUrl provided
+      <div.featured-story-meta>
+        <span.featured-story-meta-item>  ← Conditional — hidden if readTime is empty
+          <Time />                        ← @carbon/icons-react
+        </span>
+        <span.featured-story-meta-item>  ← Conditional — hidden if category is empty
+          <Document />                    ← @carbon/icons-react
+        </span>
+      </div>
+    </div>
+  </div>
+</article>
+```
+
+### Key Implementation Decisions
+
+- **`<article>` root element** — chosen over `<div>` for semantic correctness since this card represents a discrete piece of editorial content.
+- **`bannerColor` as inline style** — the banner background is the one property applied as an inline style override (`style={{ backgroundColor: bannerColor }}`). This is intentional: it is a dynamic, user-controlled value that cannot be expressed statically in a stylesheet. All other styles use CSS classes and design tokens.
+- **Carbon `<Button kind="danger">`** — the brand red color for the CTA comes from Carbon's `danger` kind, which maps to `$color-brand-red-60` (#da1e28). This keeps the button consistent with all other primary actions across the app without duplicating color values.
+- **Carbon icons** — `Time` (clock) and `Document` are from `@carbon/icons-react` at 16px, matching the icon sizing used in the Figma design. The `ArrowRight` icon is passed via Carbon Button's `renderIcon` prop.
+
+---
+
+## Styling Architecture
+
+**File**: `src/components/builder/FeaturedStory.scss`
+
+The stylesheet imports design tokens via `@use '../../styles/tokens' as *;` and relies exclusively on CSS custom properties for all theme-sensitive values.
+
+### Theme Awareness
+
+The following tokens adapt automatically when the user switches between light (`white`) and dark (`g100`) themes:
+
+| Token | Light value | Dark value | Used for |
+|---|---|---|---|
+| `var(--background-primary)` | `#ffffff` | `#161616` | Card background |
+| `var(--text-primary)` | `#161616` | `#f4f4f4` | Article title |
+| `var(--text-secondary)` | `#525252` | `#c6c6c6` | Description, meta items, meta icons |
+
+The badge colors (`#d0e2ff` background, `#0043ce` text) are hardcoded because they represent a fixed Carbon blue-10/blue-70 design choice from the Figma spec and do not need to adapt to the InsureCo light/dark theme toggle.
+
+### Responsive Behavior
+
+The component uses two breakpoints aligned with Carbon's grid system:
+
+- **< 672px (mobile)**: banner min-height 200px, banner title font-size 36px
+- **≥ 672px (tablet/desktop)**: banner min-height 240px, banner title font-size 48px, article title font-size 28px
+
+The footer uses `flex-wrap: wrap` so the CTA button and meta row stack gracefully on narrow viewports without overflow.
+
+### Box Shadow
+
+The card shadow (`0 1px 2px rgba(0,0,0,0.10), 0 1px 3px rgba(0,0,0,0.10)`) is taken directly from the Figma spec and is intentionally not replaced with a design token shadow level, as it is a custom subtle shadow that does not correspond to any of the standard elevation levels in `src/styles/tokens/elevation.scss`.
+
+---
+
+## Preview Page
+
+**Route**: `/featured-story-preview`
+**File**: `src/pages/FeaturedStoryPreview.jsx`
+
+The preview page renders three configurations of the component side-by-side for visual QA:
+
+1. **Default** — all props at their default values, matching the Figma design exactly.
+2. **Custom banner color** — demonstrates that `bannerColor` can be any color (green `#198038` in this case).
+3. **Minimal** — `badge`, `readTime`, and `category` all set to empty string to verify the component gracefully hides those elements without layout breaks.
+
+This page is accessible from the app router and serves as the reference view when configuring the component in Builder Publish for the first time.
+
+---
+
+## Adding New Variants or Props
+
+If the component needs to support new editorial patterns (e.g., a background image instead of a solid color, or an author byline):
+
+1. Add the new prop to `FeaturedStory.jsx` with a sensible default.
+2. Add the corresponding input object to the `FeaturedStory` entry in `src/builder-registry.js` so it appears in the Builder editor.
+3. Add styles to `FeaturedStory.scss` using design tokens — never hardcode colors.
+4. Add a new example section to `FeaturedStoryPreview.jsx` that demonstrates the variant.
+5. Update this documentation file.
+
+---
+
+## Related Documentation
+
+- **Design Tokens**: `.builder/rules/design-tokens.mdc`
+- **Global CSS Usage**: `.builder/rules/global-css-usage.mdc`
+- **Theme Contrast Guidelines**: `.builder/rules/theme-contrast-guidelines.mdc`
+- **Component Structure Guidelines**: `.builder/rules/component-structure.mdc`
+- **Theming System**: `.builder/rules/theming-system.mdc`

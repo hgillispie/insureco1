@@ -1,0 +1,116 @@
+@use '../../styles/tokens' as *;
+
+.featured-story-card {
+  background: var(--background-primary);
+  border-radius: 8px;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.10), 0 1px 3px 0 rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.featured-story-banner {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-09) var(--spacing-07);
+  min-height: 200px;
+
+  @media (min-width: 672px) {
+    min-height: 240px;
+  }
+}
+
+.featured-story-badge {
+  position: absolute;
+  top: 20px;
+  left: 16px;
+  background: #d0e2ff;
+  color: #0043ce;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+  padding: 1px 8px;
+  border-radius: 16px;
+  font-family: var(--font-family-sans);
+}
+
+.featured-story-banner-title {
+  color: #fff;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-align: center;
+  font-family: var(--font-family-sans);
+  margin: 0;
+
+  @media (min-width: 672px) {
+    font-size: 48px;
+  }
+}
+
+.featured-story-body {
+  padding: var(--spacing-07) var(--spacing-07) var(--spacing-07);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-06);
+  flex: 1;
+}
+
+.featured-story-title {
+  color: var(--text-primary);
+  font-size: 22px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-family-sans);
+  margin: 0;
+
+  @media (min-width: 672px) {
+    font-size: 28px;
+  }
+}
+
+.featured-story-description {
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+  font-family: var(--font-family-sans);
+  margin: 0;
+}
+
+.featured-story-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-06);
+  margin-top: auto;
+}
+
+.featured-story-cta.cds--btn {
+  flex-shrink: 0;
+}
+
+.featured-story-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-06);
+}
+
+.featured-story-meta-item {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  color: var(--text-secondary);
+  font-size: 16px;
+  font-family: var(--font-family-sans);
+}
+
+.featured-story-meta-icon {
+  fill: var(--text-secondary);
+  flex-shrink: 0;
+}
