@@ -5,7 +5,7 @@ import {
   DataTable, TableContainer, Table, TableHead, TableRow,
   TableHeader, TableBody, TableCell, Tag, Button,
 } from '@carbon/react';
-import { ArrowLeft, TrendingUp, TrendingDown } from '@carbon/icons-react';
+import { ArrowLeft, ArrowUp, ArrowDown } from '@carbon/icons-react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer,
@@ -94,7 +94,7 @@ export default function FinancialDashboardConservative() {
             <p className="cons-kpi-tile__value">{formatCurrencyShort(kpi.totalClaimedYTD)}</p>
             <p className="cons-kpi-tile__detail">{formatCurrency(kpi.totalClaimedYTD)}</p>
             <span className={`cons-loss-ratio ${isHealthy ? 'healthy' : 'at-risk'}`}>
-              {isHealthy ? <TrendingDown size={14} /> : <TrendingUp size={14} />}
+              {isHealthy ? <ArrowDown size={14} /> : <ArrowUp size={14} />}
               Loss ratio: {lossRatioPct}%
             </span>
           </Tile>
