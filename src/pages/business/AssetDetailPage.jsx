@@ -123,11 +123,14 @@ export default function AssetDetailPage() {
                 <Table {...getTableProps()}>
                   <TableHead>
                     <TableRow>
-                      {headers.map((h) => (
-                        <TableHeader key={h.key} {...getHeaderProps({ header: h })}>
-                          {h.header}
-                        </TableHeader>
-                      ))}
+                      {headers.map((h) => {
+                        const { key, ...headerProps } = getHeaderProps({ header: h });
+                        return (
+                          <TableHeader key={key} {...headerProps}>
+                            {h.header}
+                          </TableHeader>
+                        );
+                      })}
                     </TableRow>
                   </TableHead>
                   <TableBody>

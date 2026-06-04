@@ -199,18 +199,23 @@ export default function FinancialDashboardConservative() {
                 <Table {...getTableProps()} size="lg">
                   <TableHead>
                     <TableRow>
-                      {headers.map((h) => (
-                        <TableHeader key={h.key} {...getHeaderProps({ header: h })}>
-                          {h.header}
-                        </TableHeader>
-                      ))}
+                      {headers.map((h) => {
+                        const { key, ...headerProps } = getHeaderProps({ header: h });
+                        return (
+                          <TableHeader key={key} {...headerProps}>
+                            {h.header}
+                          </TableHeader>
+                        );
+                      })}
                     </TableRow>
                   </TableHead>
                   <TableBody>
-                    {rows.map((row) => (
+                    {rows.map((row) => {
+                      const { key, ...rowProps } = getRowProps({ row });
+                      return (
                       <TableRow
-                        key={row.id}
-                        {...getRowProps({ row })}
+                        key={key}
+                        {...rowProps}
                         onClick={() => navigate(`/business/financial-dashboard/asset/${row.id}`)}
                         className="cons-clickable-row"
                       >
@@ -228,7 +233,8 @@ export default function FinancialDashboardConservative() {
                           </TableCell>
                         ))}
                       </TableRow>
-                    ))}
+                      );
+                    })}
                   </TableBody>
                 </Table>
               </TableContainer>
