@@ -80,7 +80,7 @@ $hero-border: rgba(255, 255, 255, 0.08);
 
   &__title {
     font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
+    font-weight: 500;
     color: #f8fafc;
     margin: 0;
     line-height: 1;
@@ -199,6 +199,7 @@ $hero-border: rgba(255, 255, 255, 0.08);
     font-weight: var(--font-weight-semibold);
     color: #e2e8f0;
     margin: 0;
+    border: 1px solid #da1e28;
   }
 }
 

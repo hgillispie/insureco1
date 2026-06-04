@@ -79,7 +79,7 @@ export default function FinancialDashboardCreative() {
 
         <div className="creative-hero__content">
           <div className="creative-hero__headline">
-            <p className="creative-hero__year">2025 — Year to Date</p>
+            <p className="creative-hero__year"></p>
             <h1 className="creative-hero__title">Financial Analytics</h1>
             <p className="creative-hero__sub">{mode === 'gross' ? 'Gross' : 'Net'} portfolio performance</p>
           </div>
