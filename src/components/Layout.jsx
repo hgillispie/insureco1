@@ -31,8 +31,10 @@ export default function Layout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // Remove padding for landing page
+  // Remove padding for full-width pages
   const isLandingPage = location.pathname === '/';
+  const isSignupPage = location.pathname === '/signup';
+  const isNoPaddingPage = isLandingPage || isSignupPage;
 
   return (
     <HeaderContainer
@@ -192,7 +194,7 @@ export default function Layout({ children }) {
               className="cds--content"
               style={{
                 minHeight: "100vh",
-                padding: isLandingPage ? 0 : undefined
+                padding: isNoPaddingPage ? 0 : undefined
               }}
             >
               {children}
