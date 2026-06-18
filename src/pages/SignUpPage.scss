@@ -106,7 +106,7 @@
 .signup-step__title {
   font-family: Inter, -apple-system, Roboto, Helvetica, sans-serif;
   font-size: 24px;
-  font-weight: 400;
+  font-weight: 600;
   line-height: 1.2;
   color: #000;
   margin: 0;
@@ -140,7 +140,7 @@
   .cds--label {
     color: var(--text-primary);
     font-weight: 700;
-    font-size: 12px;
+    font-size: 15px;
   }
 
   .cds--text-input,
@@ -333,6 +333,7 @@
 .signup-nav__next.cds--btn--primary {
   background-color: #da1e28 !important;
   color: #fff !important;
+  font-weight: 600 !important;
 
   &:hover {
     background-color: #b81922 !important;
