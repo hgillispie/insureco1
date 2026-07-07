@@ -6,6 +6,7 @@ import "./FeaturedStory.scss";
 export default function FeaturedStory({
   badgeText = "FEATURED",
   bannerHeading = "Featured Story",
+  image,
   title = "Transforming Enterprise Design Systems: A Journey Through Innovation and Collaboration",
   description = "Explore how modern design systems are revolutionizing the way enterprise teams collaborate, build, and scale digital experiences.",
   buttonText = "Read full story",
@@ -15,7 +16,14 @@ export default function FeaturedStory({
 }) {
   return (
     <div className="featured-story">
-      <div className="featured-story__banner">
+      <div
+        className={`featured-story__banner ${
+          image ? "featured-story__banner--image" : ""
+        }`}
+      >
+        {image && (
+          <img src={image} alt="" className="featured-story__banner-image" />
+        )}
         {badgeText && <span className="featured-story__badge">{badgeText}</span>}
         {bannerHeading && (
           <h2 className="featured-story__banner-heading">{bannerHeading}</h2>

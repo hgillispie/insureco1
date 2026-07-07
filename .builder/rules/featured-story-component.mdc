@@ -18,6 +18,7 @@ primary CTA button, and meta info (read time, category). Matches the Figma "Feat
 |---|---|---|
 | `badgeText` | string | `FEATURED` |
 | `bannerHeading` | string | `Featured Story` |
+| `image` | file (optional) | none |
 | `title` | string | Sample article title |
 | `description` | longText | Sample article description |
 | `buttonText` | string | `Read full story` |
@@ -27,6 +28,9 @@ primary CTA button, and meta info (read time, category). Matches the Figma "Feat
 
 ## Styling notes
 
+- `image` is optional. When set, it renders as the banner's background (`object-fit: cover`)
+  with a static brand-blue scrim (`rgba(15, 98, 254, 0.55)`) over it so the badge/heading stay
+  readable. When omitted, the banner falls back to the solid `--color-brand-blue-60` background.
 - Banner background/badge use the static brand blue tokens (`--color-brand-blue-60/20/70`)
   since these colors don't change between light/dark theme in the source design.
 - Title, description, and meta text use theme-aware tokens (`--text-primary`, `--text-secondary`)

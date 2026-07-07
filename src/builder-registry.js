@@ -91,6 +91,7 @@ const builderCustomComponents = [
     inputs: [
       { name: "badgeText", type: "string", defaultValue: "FEATURED" },
       { name: "bannerHeading", type: "string", defaultValue: "Featured Story" },
+      { name: "image", type: "file", allowedFileTypes: ["jpeg", "jpg", "png", "webp"] },
       {
         name: "title",
         type: "string",
