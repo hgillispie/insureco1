@@ -1,0 +1,36 @@
+---
+description: FeaturedStory builder component - usage and props
+globs:
+alwaysApply: false
+---
+
+# FeaturedStory Component
+
+**Location**: `src/components/builder/FeaturedStory.jsx` + `src/components/builder/FeaturedStory.scss`
+**Registered as**: `FeaturedStory` in `src/builder-registry.js`
+
+A blog/article promo card with a colored banner (badge + heading), a title, description, a
+primary CTA button, and meta info (read time, category). Matches the Figma "Featured Story" design.
+
+## Props
+
+| Prop | Type | Default |
+|---|---|---|
+| `badgeText` | string | `FEATURED` |
+| `bannerHeading` | string | `Featured Story` |
+| `title` | string | Sample article title |
+| `description` | longText | Sample article description |
+| `buttonText` | string | `Read full story` |
+| `buttonUrl` | url | `#` |
+| `readTime` | string | `5 min read` |
+| `category` | string | `Design Systems` |
+
+## Styling notes
+
+- Banner background/badge use the static brand blue tokens (`--color-brand-blue-60/20/70`)
+  since these colors don't change between light/dark theme in the source design.
+- Title, description, and meta text use theme-aware tokens (`--text-primary`, `--text-secondary`)
+  so the card remains readable in dark mode.
+- The CTA button is Carbon's `<Button kind="primary">`, which already picks up the global
+  `--interactive-primary` theming from `src/styles/components.scss`.
+- Icons (`ArrowRight`, `Time`, `Document`) come from `@carbon/icons-react`.
