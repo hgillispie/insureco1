@@ -83,7 +83,7 @@
 
 .signup-title {
   font-size: var(--heading-h4-size);
-  font-weight: var(--font-weight-regular);
+  font-weight: var(--font-weight-semibold);
   line-height: 1.2;
   color: var(--text-on-color);
   margin-bottom: var(--spacing-03);
@@ -94,7 +94,7 @@
 
   @media (min-width: 672px) {
     font-size: var(--heading-h2-size);
-    font-weight: var(--font-weight-regular);
+    font-weight: var(--font-weight-semibold);
   }
 }
 
@@ -342,7 +342,7 @@
   font-weight: var(--font-weight-regular);
   line-height: 1.2;
   color: var(--text-primary);
-  margin: 0 0 var(--spacing-03) 0;
+  margin: 0 auto var(--spacing-03) auto;
   padding-bottom: var(--spacing-02);
   border-bottom: 1px solid var(--interactive-primary);
   display: block; // Changed from inline-block to ensure proper wrapping
