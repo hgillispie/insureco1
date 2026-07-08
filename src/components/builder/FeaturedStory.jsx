@@ -28,8 +28,10 @@ const DocumentIcon = () => (
 );
 
 export default function FeaturedStory({
+  variant = "banner",
   badgeText = "FEATURED",
   bannerTitle = "Featured Story",
+  image,
   title = "Transforming Enterprise Design Systems: A Journey Through Innovation and Collaboration",
   description = "Explore how modern design systems are revolutionizing the way enterprise teams collaborate, build, and scale digital experiences.",
   ctaText = "Read full story",
@@ -37,12 +39,23 @@ export default function FeaturedStory({
   readTime = "5 min read",
   category = "Design Systems",
 }) {
+  const hasImage = Boolean(image);
+
+  const media = (
+    <div className="featured-story-media">
+      {hasImage ? (
+        <img className="featured-story-media-image" src={image} alt={title || ""} />
+      ) : (
+        <div className="featured-story-media-fallback" />
+      )}
+      <span className="featured-story-badge">{badgeText}</span>
+      {!hasImage && <h2 className="featured-story-banner-title">{bannerTitle}</h2>}
+    </div>
+  );
+
   return (
-    <div className="featured-story-card">
-      <div className="featured-story-banner">
-        <span className="featured-story-badge">{badgeText}</span>
-        <h2 className="featured-story-banner-title">{bannerTitle}</h2>
-      </div>
+    <div className={`featured-story-card featured-story-card--${variant}`}>
+      {media}
       <div className="featured-story-content">
         {title && <h3 className="featured-story-title">{title}</h3>}
         {description && <p className="featured-story-description">{description}</p>}

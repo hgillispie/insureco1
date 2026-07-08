@@ -89,8 +89,20 @@ const builderCustomComponents = [
     component: FeaturedStory,
     name: "FeaturedStory",
     inputs: [
+      {
+        name: "variant",
+        type: "string",
+        defaultValue: "banner",
+        enum: ["banner", "photo", "horizontal"],
+      },
       { name: "badgeText", type: "string", defaultValue: "FEATURED" },
       { name: "bannerTitle", type: "string", defaultValue: "Featured Story" },
+      {
+        name: "image",
+        type: "file",
+        allowedFileTypes: ["jpeg", "jpg", "png", "webp"],
+        required: false,
+      },
       {
         name: "title",
         type: "string",

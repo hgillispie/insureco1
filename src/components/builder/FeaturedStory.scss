@@ -9,14 +9,14 @@
   overflow: hidden;
 }
 
-.featured-story-banner {
+.featured-story-media {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
   min-height: 240px;
   padding: var(--spacing-09) var(--spacing-06);
-  background: var(--color-brand-blue-60);
 
   @media (max-width: $breakpoint-md) {
     min-height: 180px;
@@ -24,10 +24,32 @@
   }
 }
 
+.featured-story-media-fallback {
+  position: absolute;
+  inset: 0;
+  background: var(--color-brand-blue-60);
+}
+
+.featured-story-media-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-story-media:has(.featured-story-media-image)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 40%);
+}
+
 .featured-story-badge {
   position: absolute;
   top: var(--spacing-05);
   left: var(--spacing-05);
+  z-index: 1;
   padding: var(--spacing-01) var(--spacing-03);
   border-radius: var(--radius-full);
   background: var(--color-brand-blue-20);
@@ -40,6 +62,8 @@
 }
 
 .featured-story-banner-title {
+  position: relative;
+  z-index: 1;
   margin: 0;
   max-width: 260px;
   color: var(--text-on-color);
@@ -123,4 +147,69 @@
   font-size: 16px;
   font-weight: 400;
   line-height: 100%;
+}
+
+// ============================================
+// Variants
+// ============================================
+
+// Banner (default): full-width hero matching the original design, solid
+// brand-blue background unless an image is supplied.
+.featured-story-card--banner {
+  .featured-story-media {
+    min-height: 240px;
+
+    @media (max-width: $breakpoint-md) {
+      min-height: 180px;
+    }
+  }
+}
+
+// Photo: taller hero image, meant to be used with the `image` field.
+.featured-story-card--photo {
+  .featured-story-media {
+    min-height: 320px;
+
+    @media (max-width: $breakpoint-md) {
+      min-height: 220px;
+    }
+  }
+}
+
+// Horizontal: compact side-by-side layout for list/grid placements.
+.featured-story-card--horizontal {
+  max-width: 960px;
+
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+
+  .featured-story-media {
+    flex: 0 0 320px;
+    min-height: 100%;
+    padding: var(--spacing-06);
+
+    @media (max-width: $breakpoint-md) {
+      flex: none;
+      min-height: 200px;
+    }
+  }
+
+  .featured-story-banner-title {
+    font-size: 32px;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 28px;
+    }
+  }
+
+  .featured-story-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
 }
