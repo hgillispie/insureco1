@@ -1,0 +1,38 @@
+---
+description: FeaturedStory Builder.io custom component - a blog/article highlight card
+globs:
+alwaysApply: false
+---
+
+# FeaturedStory Component
+
+**Location**: `src/components/builder/FeaturedStory.jsx` + `src/components/builder/FeaturedStory.scss`
+**Registered as**: `FeaturedStory` in `src/builder-registry.js`
+
+## Purpose
+
+A card that highlights a featured blog/article. Top banner with a "FEATURED" badge and
+large centered heading, followed by the article title, description, and a meta row
+(CTA button, read time, category).
+
+## Props (Builder inputs)
+
+- `badgeText` (string) - small pill label, default `"FEATURED"`
+- `bannerTitle` (string) - large heading inside the blue banner, default `"Featured Story"`
+- `title` (string) - article title
+- `description` (longText) - article summary
+- `ctaText` (string) - CTA button label, default `"Read full story"`
+- `ctaUrl` (url) - CTA link target
+- `readTime` (string) - e.g. `"5 min read"`
+- `category` (string) - e.g. `"Design Systems"`
+
+## Styling Notes
+
+- Uses `--color-brand-blue-60/70/20` tokens for the banner/badge (matches Figma `#0F62FE` /
+  `#0043CE` / `#D0E2FF` exactly).
+- CTA button uses `--interactive-primary` / `--interactive-hover` (brand red) so it stays
+  theme-aware.
+- Card background, text, and shadows use standard theme tokens (`--background-primary`,
+  `--text-primary`, `--text-secondary`, `--text-on-color`, `--card-shadow`).
+- Responsive: banner height and heading size shrink below the `$breakpoint-md` (672px)
+  breakpoint; meta row wraps on narrow viewports.
