@@ -4,6 +4,7 @@ import BlogCardGrid from "./components/builder/BlogCardGrid";
 import BlogAuthorBio from "./components/builder/BlogAuthorBio";
 import BlogRichText from "./components/builder/BlogRichText";
 import CallToAction from "./components/builder/CallToAction";
+import FeaturedStory from "./components/builder/FeaturedStory";
 
 /**
  * Custom components registered with Builder.io.
@@ -82,6 +83,43 @@ const builderCustomComponents = [
         defaultValue: "primary",
         enum: ["primary", "secondary"],
       },
+    ],
+  },
+  {
+    component: FeaturedStory,
+    name: "FeaturedStory",
+    inputs: [
+      {
+        name: "variant",
+        type: "string",
+        defaultValue: "banner",
+        enum: ["banner", "photo", "horizontal"],
+      },
+      { name: "badgeText", type: "string", defaultValue: "FEATURED" },
+      { name: "bannerTitle", type: "string", defaultValue: "Featured Story" },
+      {
+        name: "image",
+        type: "file",
+        allowedFileTypes: ["jpeg", "jpg", "png", "webp"],
+        required: false,
+      },
+      {
+        name: "title",
+        type: "string",
+        defaultValue:
+          "Transforming Enterprise Design Systems: A Journey Through Innovation and Collaboration",
+      },
+      {
+        name: "description",
+        type: "longText",
+        defaultValue:
+          "Explore how modern design systems are revolutionizing the way enterprise teams collaborate, build, and scale digital experiences.",
+      },
+      { name: "ctaText", type: "string", defaultValue: "Read full story" },
+      { name: "ctaUrl", type: "url", defaultValue: "#" },
+      { name: "ctaColor", type: "color" },
+      { name: "readTime", type: "string", defaultValue: "5 min read" },
+      { name: "category", type: "string", defaultValue: "Design Systems" },
     ],
   },
 ];

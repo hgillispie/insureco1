@@ -25,6 +25,7 @@ import FinancialDashboard1 from "./pages/FinancialDashboard1";
 import FinancialDashboard2 from "./pages/FinancialDashboard2";
 import FinancialDashboard3 from "./pages/FinancialDashboard3";
 import FinancialDashboardOptions from "./pages/FinancialDashboardOptions";
+import FeaturedStory from "./components/builder/FeaturedStory";
 
 export default function App() {
   return (
@@ -43,6 +44,31 @@ export default function App() {
         <Route path="/blog" element={<BlogPage />} />
         <Route path="/theme-preview" element={<ThemePreviewPage />} />
         <Route path="/progress-preview" element={<ProgressIndicatorPreview />} />
+        <Route
+          path="/featured-story-preview"
+          element={
+            <div
+              style={{
+                padding: 40,
+                display: "flex",
+                flexDirection: "column",
+                gap: 40,
+                alignItems: "center",
+              }}
+            >
+              <FeaturedStory variant="banner" />
+              <FeaturedStory
+                variant="photo"
+                image="https://placehold.co/800x400/0f62fe/ffffff.png"
+              />
+              <FeaturedStory
+                variant="horizontal"
+                image="https://placehold.co/640x480/0f62fe/ffffff.png"
+              />
+              <FeaturedStory variant="banner" ctaColor="#8a3ffc" />
+            </div>
+          }
+        />
 
         {/* Business Routes */}
         <Route path="/business" element={<Navigate to="/business/dashboard" replace />} />

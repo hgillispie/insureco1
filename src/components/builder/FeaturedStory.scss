@@ -1,0 +1,214 @@
+@use "../../styles/tokens" as *;
+
+.featured-story-card {
+  max-width: 720px;
+  margin: 0 auto;
+  background: var(--background-primary);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--card-shadow);
+  overflow: hidden;
+}
+
+.featured-story-media {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  min-height: 240px;
+  padding: var(--spacing-09) var(--spacing-06);
+
+  @media (max-width: $breakpoint-md) {
+    min-height: 180px;
+    padding: var(--spacing-07) var(--spacing-05);
+  }
+}
+
+.featured-story-media-fallback {
+  position: absolute;
+  inset: 0;
+  background: var(--color-brand-blue-60);
+}
+
+.featured-story-media-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.featured-story-media:has(.featured-story-media-image)::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.35) 0%, rgba(0, 0, 0, 0) 40%);
+}
+
+.featured-story-badge {
+  position: absolute;
+  top: var(--spacing-05);
+  left: var(--spacing-05);
+  z-index: 1;
+  padding: var(--spacing-01) var(--spacing-03);
+  border-radius: var(--radius-full);
+  background: var(--color-brand-blue-20);
+  color: var(--color-brand-blue-70);
+  font-family: var(--font-family-sans);
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.32px;
+}
+
+.featured-story-banner-title {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  max-width: 260px;
+  color: var(--text-on-color);
+  text-align: center;
+  font-family: var(--font-family-sans);
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 120%;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 32px;
+  }
+}
+
+.featured-story-content {
+  padding: var(--spacing-07) var(--spacing-06) var(--spacing-06);
+
+  @media (max-width: $breakpoint-md) {
+    padding: var(--spacing-06) var(--spacing-05) var(--spacing-05);
+  }
+}
+
+.featured-story-title {
+  margin: 0 0 var(--spacing-05);
+  color: var(--text-primary);
+  font-family: var(--font-family-sans);
+  font-size: 28px;
+  font-weight: 400;
+  line-height: 150%;
+
+  @media (max-width: $breakpoint-md) {
+    font-size: 22px;
+  }
+}
+
+.featured-story-description {
+  margin: 0 0 var(--spacing-06);
+  color: var(--text-secondary);
+  font-family: var(--font-family-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 150%;
+}
+
+.featured-story-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-06);
+}
+
+.featured-story-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  padding: var(--spacing-04) var(--spacing-05);
+  border: 1px solid var(--featured-story-cta-color, var(--interactive-primary));
+  border-radius: var(--radius-md);
+  background: var(--featured-story-cta-color, var(--interactive-primary));
+  color: var(--text-on-color);
+  font-family: var(--font-family-sans);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 128.572%;
+  letter-spacing: 0.16px;
+  text-decoration: none;
+  transition: filter var(--motion-hover);
+
+  &:hover {
+    filter: brightness(0.88);
+  }
+}
+
+.featured-story-meta-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-03);
+  color: var(--text-secondary);
+  font-family: var(--font-family-sans);
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 100%;
+}
+
+// ============================================
+// Variants
+// ============================================
+
+// Banner (default): full-width hero matching the original design, solid
+// brand-blue background unless an image is supplied.
+.featured-story-card--banner {
+  .featured-story-media {
+    min-height: 240px;
+
+    @media (max-width: $breakpoint-md) {
+      min-height: 180px;
+    }
+  }
+}
+
+// Photo: taller hero image, meant to be used with the `image` field.
+.featured-story-card--photo {
+  .featured-story-media {
+    min-height: 320px;
+
+    @media (max-width: $breakpoint-md) {
+      min-height: 220px;
+    }
+  }
+}
+
+// Horizontal: compact side-by-side layout for list/grid placements.
+.featured-story-card--horizontal {
+  max-width: 960px;
+
+  display: flex;
+  flex-direction: row;
+
+  @media (max-width: $breakpoint-md) {
+    flex-direction: column;
+  }
+
+  .featured-story-media {
+    flex: 0 0 320px;
+    min-height: 100%;
+    padding: var(--spacing-06);
+
+    @media (max-width: $breakpoint-md) {
+      flex: none;
+      min-height: 200px;
+    }
+  }
+
+  .featured-story-banner-title {
+    font-size: 32px;
+
+    @media (max-width: $breakpoint-md) {
+      font-size: 28px;
+    }
+  }
+
+  .featured-story-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+}

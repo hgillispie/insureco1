@@ -1,0 +1,63 @@
+---
+description: FeaturedStory Builder.io custom component - a blog/article highlight card
+globs:
+alwaysApply: false
+---
+
+# FeaturedStory Component
+
+**Location**: `src/components/builder/FeaturedStory.jsx` + `src/components/builder/FeaturedStory.scss`
+**Registered as**: `FeaturedStory` in `src/builder-registry.js`
+
+## Purpose
+
+A card that highlights a featured blog/article. Top banner with a "FEATURED" badge and
+large centered heading, followed by the article title, description, and a meta row
+(CTA button, read time, category).
+
+## Props (Builder inputs)
+
+- `variant` (string enum) - `"banner"` (default), `"photo"`, or `"horizontal"` — see Variants below
+- `badgeText` (string) - small pill label, default `"FEATURED"`
+- `bannerTitle` (string) - large heading shown over the media area when no `image` is set,
+  default `"Featured Story"`
+- `image` (file, optional) - hero image; when set, it replaces the solid blue background and
+  the `bannerTitle` text is hidden (the badge remains overlaid on top)
+- `title` (string) - article title
+- `description` (longText) - article summary
+- `ctaText` (string) - CTA button label, default `"Read full story"`
+- `ctaUrl` (url) - CTA link target
+- `ctaColor` (color, optional) - overrides the CTA button's background/border color; falls back
+  to `--interactive-primary` (brand red) when unset. Hover state uses a `brightness` filter so
+  it works with any chosen color.
+- `readTime` (string) - e.g. `"5 min read"`
+- `category` (string) - e.g. `"Design Systems"`
+
+## Variants
+
+- **`banner`** (default) - pixel-perfect match of the original Figma design: full-width hero,
+  240px tall (180px on mobile), solid brand-blue background unless `image` is supplied.
+- **`photo`** - same top-hero layout but taller (320px / 220px on mobile), intended to be paired
+  with the `image` field for a real photograph instead of the solid color.
+- **`horizontal`** - compact side-by-side layout (media on the left, content on the right) for
+  list/grid placements; stacks vertically below the `$breakpoint-md` (672px) breakpoint.
+
+Regardless of variant, supplying an `image` always swaps the solid `--color-brand-blue-60`
+fallback for the photo (with a subtle top gradient overlay for badge contrast) and hides the
+`bannerTitle` text.
+
+## Styling Notes
+
+- Uses `--color-brand-blue-60/70/20` tokens for the banner/badge (matches Figma `#0F62FE` /
+  `#0043CE` / `#D0E2FF` exactly).
+- CTA button uses `--interactive-primary` / `--interactive-hover` (brand red) so it stays
+  theme-aware.
+- Card background, text, and shadows use standard theme tokens (`--background-primary`,
+  `--text-primary`, `--text-secondary`, `--text-on-color`, `--card-shadow`).
+- Responsive: media height and heading size shrink below the `$breakpoint-md` (672px)
+  breakpoint; meta row wraps on narrow viewports.
+
+## Preview
+
+A demo route showing all 3 variants is available at `/featured-story-preview` (wired in
+`src/App.jsx`), useful for visually testing changes to this component.
