@@ -120,9 +120,9 @@
   align-items: center;
   gap: var(--spacing-03);
   padding: var(--spacing-04) var(--spacing-05);
-  border: 1px solid var(--interactive-primary);
+  border: 1px solid var(--featured-story-cta-color, var(--interactive-primary));
   border-radius: var(--radius-md);
-  background: var(--interactive-primary);
+  background: var(--featured-story-cta-color, var(--interactive-primary));
   color: var(--text-on-color);
   font-family: var(--font-family-sans);
   font-size: 14px;
@@ -130,11 +130,10 @@
   line-height: 128.572%;
   letter-spacing: 0.16px;
   text-decoration: none;
-  transition: background var(--motion-hover), border-color var(--motion-hover);
+  transition: filter var(--motion-hover);
 
   &:hover {
-    background: var(--interactive-hover);
-    border-color: var(--interactive-hover);
+    filter: brightness(0.88);
   }
 }
 

@@ -65,6 +65,7 @@ export default function App() {
                 variant="horizontal"
                 image="https://placehold.co/640x480/0f62fe/ffffff.png"
               />
+              <FeaturedStory variant="banner" ctaColor="#8a3ffc" />
             </div>
           }
         />

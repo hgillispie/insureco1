@@ -117,6 +117,7 @@ const builderCustomComponents = [
       },
       { name: "ctaText", type: "string", defaultValue: "Read full story" },
       { name: "ctaUrl", type: "url", defaultValue: "#" },
+      { name: "ctaColor", type: "color" },
       { name: "readTime", type: "string", defaultValue: "5 min read" },
       { name: "category", type: "string", defaultValue: "Design Systems" },
     ],

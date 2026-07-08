@@ -27,6 +27,9 @@ large centered heading, followed by the article title, description, and a meta r
 - `description` (longText) - article summary
 - `ctaText` (string) - CTA button label, default `"Read full story"`
 - `ctaUrl` (url) - CTA link target
+- `ctaColor` (color, optional) - overrides the CTA button's background/border color; falls back
+  to `--interactive-primary` (brand red) when unset. Hover state uses a `brightness` filter so
+  it works with any chosen color.
 - `readTime` (string) - e.g. `"5 min read"`
 - `category` (string) - e.g. `"Design Systems"`
 

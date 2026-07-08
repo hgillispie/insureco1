@@ -36,6 +36,7 @@ export default function FeaturedStory({
   description = "Explore how modern design systems are revolutionizing the way enterprise teams collaborate, build, and scale digital experiences.",
   ctaText = "Read full story",
   ctaUrl = "#",
+  ctaColor,
   readTime = "5 min read",
   category = "Design Systems",
 }) {
@@ -60,7 +61,11 @@ export default function FeaturedStory({
         {title && <h3 className="featured-story-title">{title}</h3>}
         {description && <p className="featured-story-description">{description}</p>}
         <div className="featured-story-meta">
-          <a className="featured-story-cta" href={ctaUrl}>
+          <a
+            className="featured-story-cta"
+            href={ctaUrl}
+            style={ctaColor ? { "--featured-story-cta-color": ctaColor } : undefined}
+          >
             {ctaText}
             <ArrowRightIcon />
           </a>
