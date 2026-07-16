@@ -86,6 +86,15 @@ export default function Layout({ children }) {
                   <HeaderMenuItem element={Link} to="/business/payments">
                     Payments
                   </HeaderMenuItem>
+                  <HeaderMenuItem element={Link} to="/business/financials/conservative">
+                    Financials · Conservative
+                  </HeaderMenuItem>
+                  <HeaderMenuItem element={Link} to="/business/financials/modern">
+                    Financials · Modern
+                  </HeaderMenuItem>
+                  <HeaderMenuItem element={Link} to="/business/financials/wild">
+                    Financials · Wild
+                  </HeaderMenuItem>
                 </HeaderMenu>
 
                 <HeaderMenuItem onClick={() => navigate("/login")}>
@@ -171,6 +180,27 @@ export default function Layout({ children }) {
                         onClick={isSideNavExpanded ? onClickSideNavExpand : undefined}
                       >
                         Payments
+                      </SideNavMenuItem>
+                      <SideNavMenuItem
+                        element={Link}
+                        to="/business/financials/conservative"
+                        onClick={isSideNavExpanded ? onClickSideNavExpand : undefined}
+                      >
+                        Financials · Conservative
+                      </SideNavMenuItem>
+                      <SideNavMenuItem
+                        element={Link}
+                        to="/business/financials/modern"
+                        onClick={isSideNavExpanded ? onClickSideNavExpand : undefined}
+                      >
+                        Financials · Modern
+                      </SideNavMenuItem>
+                      <SideNavMenuItem
+                        element={Link}
+                        to="/business/financials/wild"
+                        onClick={isSideNavExpanded ? onClickSideNavExpand : undefined}
+                      >
+                        Financials · Wild
                       </SideNavMenuItem>
                     </SideNavMenu>
 

@@ -19,6 +19,9 @@ import AddVehiclePage from "./pages/business/AddVehiclePage";
 import FileClaimPage from "./pages/business/FileClaimPage";
 import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
+import FinancialDashboardConservative from "./pages/business/financials/FinancialDashboardConservative";
+import FinancialDashboardModern from "./pages/business/financials/FinancialDashboardModern";
+import FinancialDashboardWild from "./pages/business/financials/FinancialDashboardWild";
 
 export default function App() {
   return (
@@ -46,6 +49,9 @@ export default function App() {
         <Route path="/business/payments" element={<BusinessComingSoon />} />
         <Route path="/business/file-claim" element={<FileClaimPage />} />
         <Route path="/business/make-payment" element={<MakePaymentPage />} />
+        <Route path="/business/financials/conservative" element={<FinancialDashboardConservative />} />
+        <Route path="/business/financials/modern" element={<FinancialDashboardModern />} />
+        <Route path="/business/financials/wild" element={<FinancialDashboardWild />} />
       </Routes>
     </Layout>
   );
