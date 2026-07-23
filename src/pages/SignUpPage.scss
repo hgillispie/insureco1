@@ -21,6 +21,10 @@
   gap: var(--spacing-06);
 }
 
+#firstName.cds--text-input {
+  border-color: var(--color-brand-red-50);
+}
+
 // ============================================
 // Banner
 // ============================================
@@ -112,7 +116,7 @@
   color: var(--text-primary);
   font-family: var(--font-family-sans);
   font-size: var(--heading-h4-size);
-  font-weight: var(--heading-h4-weight);
+  font-weight: var(--font-weight-bold);
   line-height: 1.2;
 }
 
