@@ -1,0 +1,267 @@
+@use '../styles/tokens' as *;
+
+.signup-page {
+  .cds--content & {
+    padding: 0;
+  }
+
+  padding: var(--spacing-05) var(--spacing-03) var(--spacing-09);
+  background-color: var(--background-primary);
+
+  @media (min-width: 672px) {
+    padding: var(--spacing-06) var(--spacing-06) var(--spacing-10);
+  }
+}
+
+.signup-page__container {
+  max-width: 45rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-06);
+}
+
+#firstName.cds--text-input {
+  border-color: var(--color-brand-red-50);
+}
+
+// ============================================
+// Banner
+// ============================================
+.signup-banner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-03);
+  padding: var(--spacing-07) var(--spacing-05);
+  border-radius: var(--radius-lg);
+  background: linear-gradient(135deg, var(--color-brand-red-70) 70.71%, var(--color-brand-red-60) 0%);
+  box-shadow: 0 4px 12px 0 rgba(218, 30, 40, 0.15);
+  text-align: center;
+
+  @media (min-width: 672px) {
+    padding: var(--spacing-07) var(--spacing-10);
+  }
+}
+
+.signup-banner__title {
+  margin: 0;
+  color: var(--text-on-color);
+  font-family: var(--font-family-sans);
+  font-size: $font-size-24;
+  font-weight: var(--font-weight-regular);
+  line-height: 1.2;
+
+  @media (min-width: 672px) {
+    font-size: $font-size-28;
+  }
+}
+
+.signup-banner__subtitle {
+  margin: 0;
+  color: var(--text-on-color);
+  opacity: 0.95;
+  font-family: var(--font-family-sans);
+  font-size: var(--body-sm-size);
+  line-height: 1.5;
+
+  @media (min-width: 672px) {
+    font-size: var(--body-md-size);
+  }
+}
+
+// ============================================
+// Progress
+// ============================================
+.signup-progress {
+  padding: var(--spacing-05) var(--spacing-04);
+  border-radius: var(--radius-md);
+  border-top: 1px solid var(--interactive-primary);
+  background: var(--background-secondary);
+  box-shadow: var(--shadow-02);
+
+  .cds--progress-label {
+    color: var(--text-primary);
+  }
+
+  .cds--progress-optional {
+    color: var(--text-secondary);
+  }
+}
+
+// ============================================
+// Card
+// ============================================
+.signup-card {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-06);
+  border-top: 5px solid var(--interactive-primary);
+  background: var(--background-secondary);
+  box-shadow: var(--shadow-02);
+
+  @media (min-width: 672px) {
+    padding: var(--spacing-06) var(--spacing-06) var(--spacing-07);
+  }
+}
+
+.signup-card__header {
+  margin-bottom: var(--spacing-04);
+  padding-bottom: var(--spacing-04);
+  border-bottom: 1px solid var(--interactive-primary);
+}
+
+.signup-card__title {
+  margin: 0;
+  color: var(--text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--heading-h4-size);
+  font-weight: var(--font-weight-bold);
+  line-height: 1.2;
+}
+
+.signup-card__description {
+  margin: 0 0 var(--spacing-07);
+  color: var(--text-secondary);
+  font-family: var(--font-family-sans);
+  font-size: var(--body-sm-size);
+  line-height: 1.5;
+}
+
+.signup-card__body {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--spacing-06);
+}
+
+.signup-card__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-04);
+  padding-top: var(--spacing-06);
+  border-top: 1px solid var(--interactive-primary);
+  flex-wrap: wrap;
+
+  .cds--btn {
+    flex: 1 1 auto;
+    justify-content: center;
+  }
+
+  @media (min-width: 672px) {
+    .cds--btn {
+      flex: 0 0 auto;
+    }
+  }
+}
+
+// ============================================
+// Insurance Type Tiles
+// ============================================
+.insurance-type-tiles {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-04);
+}
+
+.insurance-type-tile.cds--tile {
+  width: 100%;
+  padding: var(--spacing-05);
+  border: 2px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--motion-hover, 150ms ease), background-color var(--motion-hover, 150ms ease), transform var(--motion-hover, 150ms ease);
+
+  &:hover {
+    border-color: var(--interactive-primary);
+    transform: translateY(-2px);
+  }
+
+  &.cds--tile--is-selected {
+    border-width: 3px;
+    border-color: var(--interactive-primary);
+    background-color: var(--background-selected);
+
+    .insurance-type-tile__icon {
+      fill: var(--interactive-primary);
+    }
+  }
+}
+
+.insurance-type-tile__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-04);
+  text-align: center;
+  min-height: 6.25rem;
+  justify-content: center;
+
+  @media (min-width: 672px) {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    min-height: 7.5rem;
+  }
+}
+
+.insurance-type-tile__icon-group {
+  display: flex;
+  gap: var(--spacing-03);
+}
+
+.insurance-type-tile__icon {
+  flex-shrink: 0;
+  fill: var(--text-primary);
+}
+
+.insurance-type-tile__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-02);
+}
+
+.insurance-type-tile__title {
+  font-family: var(--font-family-sans);
+  font-size: var(--heading-h5-size);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text-primary);
+}
+
+.insurance-type-tile__desc {
+  font-family: var(--font-family-sans);
+  font-size: var(--body-sm-size);
+  color: var(--text-secondary);
+}
+
+// ============================================
+// Review Step
+// ============================================
+.signup-review {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-06);
+}
+
+.signup-review__section {
+  padding-bottom: var(--spacing-05);
+  border-bottom: 1px solid var(--border-subtle);
+
+  &:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  p {
+    margin: 0 0 var(--spacing-02);
+    color: var(--text-primary);
+    font-size: var(--body-sm-size);
+  }
+}
+
+.signup-review__heading {
+  margin: 0 0 var(--spacing-03);
+  color: var(--text-primary);
+  font-family: var(--font-family-sans);
+  font-size: var(--heading-h6-size);
+  font-weight: var(--font-weight-semibold);
+}
