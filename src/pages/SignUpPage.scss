@@ -1,0 +1,198 @@
+@use '../styles/tokens' as *;
+
+.signup-page {
+  padding: 0;
+
+  // Hero Banner
+  &__hero-section {
+    padding: 0;
+    margin-bottom: var(--spacing-06);
+  }
+
+  &__hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-03);
+    padding: var(--spacing-07) var(--spacing-09);
+    border-radius: var(--radius-md);
+    background: linear-gradient(135deg, #a2191f 70.71%, #da1e28 0%);
+    box-shadow: 0 4px 12px 0 rgba(218, 30, 40, 0.15);
+  }
+
+  &__hero-title {
+    margin: 0;
+    font-size: var(--heading-h2-size);
+    font-weight: var(--font-weight-regular);
+    color: var(--text-on-color);
+    text-align: center;
+  }
+
+  &__hero-subtitle {
+    margin: 0;
+    font-size: var(--body-md-size);
+    color: var(--text-on-color);
+    opacity: 0.95;
+    text-align: center;
+  }
+
+  // Progress Panel
+  &__progress-section {
+    margin-bottom: var(--spacing-08);
+  }
+
+  &__progress-panel {
+    padding: var(--spacing-05) var(--spacing-05);
+    border-top: 1px solid var(--interactive-primary);
+    border-radius: var(--radius-md);
+    background: var(--background-secondary);
+    box-shadow: var(--card-shadow);
+  }
+
+  // Form Tile
+  &__form-tile {
+    padding: var(--spacing-06) var(--spacing-05);
+    margin-bottom: var(--spacing-06);
+    border-top: 5px solid var(--interactive-primary);
+
+    .step-content {
+      &__header {
+        padding-bottom: var(--spacing-03);
+        margin-bottom: var(--spacing-05);
+        border-bottom: 1px solid var(--interactive-primary);
+      }
+
+      &__title {
+        margin: 0;
+        font-size: var(--heading-h3-size);
+        font-weight: var(--font-weight-regular);
+        color: var(--text-primary);
+      }
+
+      &__description {
+        margin: 0 0 var(--spacing-06) 0;
+        font-size: var(--body-md-size);
+        color: var(--text-secondary);
+      }
+
+      form {
+        display: flex;
+        flex-direction: column;
+        gap: var(--spacing-05);
+      }
+    }
+  }
+
+  // Navigation
+  &__navigation {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: var(--spacing-04);
+    padding: var(--spacing-07) 0 var(--spacing-05) 0;
+    border-top: 1px solid var(--interactive-primary);
+  }
+
+  // Insurance Type Tiles
+  .insurance-type-tiles {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-04);
+
+    legend {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .cds--tile-group {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-04);
+    }
+  }
+
+  .insurance-type-tile {
+    width: 100%;
+
+    &__content {
+      display: flex;
+      align-items: center;
+      gap: var(--spacing-05);
+    }
+
+    &__icons {
+      display: flex;
+      gap: var(--spacing-02);
+      flex-shrink: 0;
+    }
+
+    &__text {
+      display: flex;
+      flex-direction: column;
+      gap: var(--spacing-02);
+
+      h4 {
+        margin: 0;
+        font-size: var(--heading-h5-size);
+        font-weight: var(--font-weight-semibold);
+        color: var(--text-primary);
+      }
+
+      p {
+        margin: 0;
+        font-size: var(--body-sm-size);
+        color: var(--text-secondary);
+      }
+    }
+
+    // Hover lift treatment without overriding Carbon's native interaction states
+    &:hover {
+      box-shadow: var(--card-shadow-hover);
+    }
+  }
+
+  .insurance-type-tiles__error {
+    margin: 0;
+    font-size: var(--body-sm-size);
+    color: var(--text-error);
+  }
+
+  // Responsive
+  @media (max-width: 672px) {
+    &__hero {
+      padding: var(--spacing-06) var(--spacing-05);
+    }
+
+    &__hero-title {
+      font-size: var(--heading-h3-size);
+    }
+
+    &__hero-subtitle {
+      font-size: var(--body-sm-size);
+    }
+
+    &__form-tile {
+      padding: var(--spacing-05) var(--spacing-04);
+    }
+
+    &__navigation {
+      flex-direction: column-reverse;
+      align-items: stretch;
+
+      button {
+        width: 100%;
+      }
+    }
+
+    .insurance-type-tile__content {
+      align-items: flex-start;
+    }
+  }
+}
