@@ -17,7 +17,7 @@
     gap: var(--spacing-03);
     padding: var(--spacing-07) var(--spacing-09);
     border-radius: var(--radius-md);
-    background: linear-gradient(135deg, #a2191f 70.71%, #da1e28 0%);
+    background: linear-gradient(135deg, var(--color-brand-red-70) 0%, var(--color-brand-red-60) 100%);
     box-shadow: 0 4px 12px 0 rgba(218, 30, 40, 0.15);
   }
 
