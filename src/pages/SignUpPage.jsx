@@ -326,7 +326,7 @@ export default function SignUpPage() {
             id="signup-date-of-birth"
             labelText="Date of Birth"
             placeholder="mm/dd/yyyy"
-            value={formData.dateOfBirth}
+            defaultValue={formData.dateOfBirth}
             onChange={(event) => updateField('dateOfBirth', event.target.value)}
             invalid={Boolean(errors.dateOfBirth)}
             invalidText={errors.dateOfBirth}
@@ -727,7 +727,7 @@ export default function SignUpPage() {
         </nav>
       </Column>
 
-      <Column lg={12} lgOffset={2} md={8} sm={4}>
+      <Column lg={12} md={8} sm={4} className="signup-form-column">
         <Tile className="signup-form-tile">
           <div className={`signup-step-content${transitionClass}`} aria-live="polite">
             {renderActiveStep()}
