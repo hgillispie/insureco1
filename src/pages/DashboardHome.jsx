@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import {
   Grid,
   Column,
@@ -16,6 +16,7 @@ import {
   TableCell,
   Heading,
   Stack,
+  InlineNotification,
 } from '@carbon/react';
 import {
   DocumentBlank,
@@ -30,6 +31,8 @@ import './DashboardHome.scss';
 
 export default function DashboardHome() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const [notification, setNotification] = useState(location.state?.notification || null);
 
   const policies = [
     { 
@@ -124,6 +127,19 @@ export default function DashboardHome() {
 
   return (
     <Grid fullWidth className="dashboard-home">
+      {notification && (
+        <Column lg={16} md={8} sm={4}>
+          <InlineNotification
+            kind={notification.kind}
+            title={notification.title}
+            subtitle={notification.subtitle}
+            aria-label="Dismiss dashboard notification"
+            statusIconDescription={notification.kind}
+            onCloseButtonClick={() => setNotification(null)}
+          />
+        </Column>
+      )}
+
       <Column lg={16} md={8} sm={4} className="dashboard-header">
         <Heading className="dashboard-title">My Dashboard</Heading>
         <p className="dashboard-subtitle">

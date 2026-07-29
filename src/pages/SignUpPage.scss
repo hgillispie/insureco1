@@ -1,0 +1,398 @@
+@use '../styles/tokens' as *;
+
+.signup-page {
+  min-height: calc(100vh - 3rem);
+  padding: var(--spacing-05) 0 var(--spacing-09);
+  background: var(--background-primary);
+
+  .signup-banner-column,
+  .signup-progress-column {
+    padding: 0 var(--spacing-05);
+  }
+
+  .signup-banner-column {
+    margin-bottom: var(--spacing-07);
+  }
+
+  .signup-banner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: var(--spacing-03);
+    padding: var(--spacing-07) var(--spacing-09);
+    border-radius: var(--radius-lg);
+    background: linear-gradient(135deg, var(--color-brand-red-80) 70.71%, var(--color-brand-red-60) 0%);
+    box-shadow: var(--card-shadow);
+    text-align: center;
+  }
+
+  .signup-banner-title {
+    margin: 0;
+    color: var(--text-on-color);
+    font-size: var(--heading-h3-size);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .signup-banner-subtitle {
+    margin: 0;
+    color: var(--text-on-color);
+    font-size: var(--body-md-size);
+    opacity: 0.95;
+  }
+
+  .signup-progress-column {
+    margin-bottom: var(--spacing-07);
+  }
+
+  .signup-progress {
+    overflow-x: auto;
+    padding: var(--spacing-05);
+    border-top: 1px solid var(--interactive-primary);
+    border-radius: var(--radius-md);
+    background: var(--background-secondary);
+    box-shadow: var(--card-shadow);
+  }
+
+  .signup-form-tile {
+    overflow: hidden;
+    padding: var(--spacing-06);
+    border-top: 5px solid var(--interactive-primary);
+    background: var(--background-secondary);
+    box-shadow: var(--card-shadow);
+  }
+
+  .signup-step-content {
+    color: var(--text-primary);
+    transition: opacity var(--motion-fade), transform var(--motion-slide);
+  }
+
+  .signup-step-content--exit {
+    opacity: 0;
+
+    &.signup-step-content--forward {
+      transform: translateX(-16px);
+    }
+
+    &.signup-step-content--backward {
+      transform: translateX(16px);
+    }
+  }
+
+  .signup-step-content--enter.signup-step-content--forward {
+    animation: signup-enter-forward var(--motion-slide) both;
+  }
+
+  .signup-step-content--enter.signup-step-content--backward {
+    animation: signup-enter-backward var(--motion-slide) both;
+  }
+
+  .signup-section-header {
+    margin-bottom: var(--spacing-06);
+    padding-bottom: var(--spacing-03);
+    border-bottom: 1px solid var(--interactive-primary);
+  }
+
+  .signup-section-title {
+    margin: 0;
+    color: var(--text-primary);
+    font-size: var(--heading-h4-size);
+    font-weight: var(--font-weight-regular);
+  }
+
+  .signup-section-description {
+    margin: 0 0 var(--spacing-07);
+    color: var(--text-primary);
+    font-size: var(--body-md-size);
+  }
+
+  .signup-form {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-06);
+
+    .cds--form-item,
+    .cds--select,
+    .cds--select-input__wrapper,
+    .cds--number,
+    .cds--date-picker,
+    .cds--date-picker-container,
+    .cds--date-picker-input__wrapper {
+      width: 100%;
+      max-width: none;
+    }
+
+    .cds--date-picker__input {
+      width: 100%;
+      min-width: 0;
+    }
+  }
+
+  .signup-insurance-options {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-06);
+
+    > .cds--label {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip: rect(0 0 0 0);
+      white-space: nowrap;
+    }
+
+    .cds--tile {
+      min-height: 88px;
+      padding: var(--spacing-05);
+      border: 2px solid transparent;
+      background: var(--background-primary);
+      transition: border-color var(--motion-hover), background-color var(--motion-hover), transform var(--motion-hover);
+
+      &:hover {
+        border-color: var(--border-interactive);
+        background: var(--background-hover);
+        transform: translateY(-2px);
+      }
+    }
+
+    .cds--tile-input:checked + .cds--tile,
+    .cds--tile--is-selected {
+      border-color: var(--interactive-primary);
+      background: var(--background-selected);
+    }
+  }
+
+  .signup-insurance-option {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-05);
+    color: var(--text-primary);
+
+    svg {
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    h3 {
+      margin: 0 0 var(--spacing-03);
+      color: var(--text-primary);
+      font-size: var(--heading-h5-size);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    p {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: var(--body-sm-size);
+    }
+  }
+
+  .signup-insurance-icons {
+    display: flex;
+    flex-shrink: 0;
+    gap: var(--spacing-03);
+  }
+
+  .signup-selection-error {
+    margin: var(--spacing-04) 0 0;
+    color: var(--text-error);
+    font-size: var(--body-sm-size);
+  }
+
+  .signup-checkbox-group {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-04);
+    margin: 0;
+    padding: var(--spacing-05);
+    border: 1px solid var(--border-subtle);
+
+    legend {
+      padding: 0 var(--spacing-03);
+      color: var(--text-primary);
+      font-size: var(--body-sm-size);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+
+  .signup-review-section {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--spacing-05);
+    margin-bottom: var(--spacing-06);
+  }
+
+  .signup-review-group {
+    padding: var(--spacing-05);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius-md);
+    background: var(--background-primary);
+
+    h3 {
+      margin: 0 0 var(--spacing-04);
+      padding-bottom: var(--spacing-03);
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-primary);
+      font-size: var(--heading-h5-size);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    dl {
+      margin: 0;
+    }
+  }
+
+  .signup-review-item {
+    margin-bottom: var(--spacing-04);
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    dt {
+      margin-bottom: var(--spacing-02);
+      color: var(--text-secondary);
+      font-size: var(--body-xs-size);
+      font-weight: var(--font-weight-semibold);
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    dd {
+      margin: 0;
+      color: var(--text-primary);
+      font-size: var(--body-md-size);
+      overflow-wrap: anywhere;
+    }
+  }
+
+  .signup-navigation {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-04);
+    margin-top: var(--spacing-07);
+    padding-top: var(--spacing-06);
+    border-top: 1px solid var(--interactive-primary);
+  }
+
+  .signup-navigation-primary {
+    display: flex;
+    gap: var(--spacing-04);
+  }
+
+  @media (min-width: 672px) {
+    padding-top: var(--spacing-07);
+
+    .signup-banner-column,
+    .signup-progress-column {
+      padding: 0 var(--spacing-07);
+    }
+
+    .signup-banner-title {
+      font-size: var(--heading-h2-size);
+    }
+
+    .signup-form-tile {
+      padding: var(--spacing-06) var(--spacing-07);
+    }
+
+    .signup-review-section {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 671px) {
+    .signup-banner-column,
+    .signup-progress-column {
+      padding: 0 var(--spacing-04);
+    }
+
+    .signup-banner {
+      padding: var(--spacing-06) var(--spacing-05);
+    }
+
+    .signup-banner-title {
+      font-size: var(--heading-h4-size);
+    }
+
+    .signup-banner-subtitle {
+      font-size: var(--body-sm-size);
+    }
+
+    .signup-progress {
+      padding: var(--spacing-04);
+
+      .step-breadcrumb {
+        min-width: max-content;
+      }
+
+      .step-breadcrumb__item {
+        min-width: 72px;
+      }
+    }
+
+    .signup-form-tile {
+      padding: var(--spacing-05) var(--spacing-04);
+    }
+
+    .signup-section-description {
+      margin-bottom: var(--spacing-06);
+    }
+
+    .signup-insurance-option {
+      align-items: flex-start;
+
+      h3 {
+        font-size: var(--heading-h6-size);
+      }
+    }
+
+    .signup-navigation,
+    .signup-navigation-primary {
+      flex-direction: column-reverse;
+      align-items: stretch;
+    }
+
+    .signup-navigation button,
+    .signup-navigation-primary button {
+      width: 100%;
+      max-width: none;
+      min-height: 48px;
+    }
+  }
+}
+
+@keyframes signup-enter-forward {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes signup-enter-backward {
+  from {
+    opacity: 0;
+    transform: translateX(-16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .signup-page {
+    .signup-step-content,
+    .signup-insurance-options .cds--tile {
+      transition: none;
+      animation: none;
+      transform: none;
+    }
+  }
+}
