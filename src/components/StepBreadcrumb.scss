@@ -2,137 +2,64 @@
 
 .step-breadcrumb {
   display: flex;
-  align-items: center;
+  align-items: flex-start;
+  align-self: stretch;
   width: 100%;
-  gap: var(--spacing-03);
-
-  &--equal {
-    .step-breadcrumb__item {
-      flex: 1;
-    }
-  }
 }
 
 .step-breadcrumb__item {
   display: flex;
-  align-items: center;
-  gap: var(--spacing-03);
-  min-width: 0; // Allow text truncation
-
-  // Mobile: stack vertically
-  @media (max-width: 671px) {
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: var(--spacing-02);
-  }
-}
-
-.step-breadcrumb__marker {
-  flex-shrink: 0;
-  width: 24px;
-  height: 24px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  font-weight: var(--font-weight-semibold);
-  transition: all 0.2s ease;
-
-  // Default (incomplete) state
-  background-color: transparent;
-  border: 2px solid var(--border-strong);
-  color: var(--text-secondary);
-
-  // Complete state
-  .step-breadcrumb__item--complete & {
-    background-color: var(--interactive-primary);
-    border-color: var(--interactive-primary);
-    color: var(--text-on-color);
-  }
-
-  // Current state
-  .step-breadcrumb__item--current & {
-    background-color: var(--interactive-primary);
-    border-color: var(--interactive-primary);
-    color: var(--text-on-color);
-    box-shadow: 0 0 0 3px var(--background-selected);
-  }
-}
-
-.step-breadcrumb__check {
-  fill: currentColor;
-}
-
-.step-breadcrumb__number {
-  line-height: 1;
-}
-
-.step-breadcrumb__content {
-  display: flex;
+  flex: 1 0 0;
   flex-direction: column;
-  gap: var(--spacing-01);
-  min-width: 0; // Allow text truncation
+  align-items: flex-start;
+  align-self: stretch;
+  min-width: 0;
+  padding-top: 10px;
+  border-top: 2px solid var(--border-subtle);
 
-  @media (max-width: 671px) {
-    align-items: center;
+  &--current,
+  &--complete {
+    border-top-color: var(--color-brand-blue-60);
+  }
+}
+
+.step-breadcrumb__icon-label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-03);
+  align-self: stretch;
+  padding-right: var(--spacing-05);
+}
+
+.step-breadcrumb__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 1px 0;
+  color: var(--text-primary);
+
+  .step-breadcrumb__item--current &,
+  .step-breadcrumb__item--complete & {
+    color: var(--color-brand-blue-60);
   }
 }
 
 .step-breadcrumb__label {
   font-size: var(--body-sm-size);
-  font-weight: var(--font-weight-semibold);
-  color: var(--text-secondary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @media (min-width: 672px) {
-    font-size: var(--body-md-size);
-  }
-
-  // Complete state
-  .step-breadcrumb__item--complete & {
-    color: var(--text-primary);
-  }
-
-  // Current state
-  .step-breadcrumb__item--current & {
-    color: var(--interactive-primary);
-    font-weight: var(--font-weight-bold);
-  }
+  font-weight: var(--font-weight-regular);
+  line-height: 18px;
+  letter-spacing: 0.16px;
+  color: var(--text-primary);
 }
 
-.step-breadcrumb__description {
-  font-size: var(--body-xs-size);
-  color: var(--text-tertiary);
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-
-  @media (min-width: 672px) {
-    font-size: var(--body-sm-size);
+// Mobile: allow labels to wrap within their segment instead of switching
+// to a stacked layout, keeping the same horizontal progress bar at all sizes.
+@media (max-width: 671px) {
+  .step-breadcrumb__icon-label {
+    padding-right: var(--spacing-03);
   }
 
-  // Current state
-  .step-breadcrumb__item--current & {
-    color: var(--text-secondary);
-  }
-}
-
-.step-breadcrumb__line {
-  flex: 1;
-  height: 2px;
-  background-color: var(--border-subtle);
-  min-width: 20px;
-  transition: background-color 0.2s ease;
-
-  &--complete {
-    background-color: var(--interactive-primary);
-  }
-
-  @media (max-width: 671px) {
-    display: none; // Hide connector lines on mobile for cleaner look
+  .step-breadcrumb__label {
+    font-size: var(--body-xs-size);
   }
 }
