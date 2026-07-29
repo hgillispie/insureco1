@@ -1,5 +1,7 @@
 import React from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { getSignUpSubmissions } from '../utils/signupSubmissions';
 import {
   Grid,
   Column,
@@ -30,6 +32,26 @@ import './DashboardHome.scss';
 
 export default function DashboardHome() {
   const navigate = useNavigate();
+  const [signUpSubmissions] = useState(getSignUpSubmissions);
+
+  const signUpRows = signUpSubmissions.map((submission) => ({
+    id: submission.id,
+    applicant: `${submission.firstName} ${submission.lastName}`.trim(),
+    email: submission.email,
+    coverage: submission.insuranceType === 'both'
+      ? 'Home and Car'
+      : `${submission.insuranceType[0].toUpperCase()}${submission.insuranceType.slice(1)}`,
+    location: `${submission.city}, ${submission.state}`,
+    submittedAt: new Date(submission.submittedAt).toLocaleDateString(),
+  }));
+
+  const signUpHeaders = [
+    { key: 'applicant', header: 'Applicant' },
+    { key: 'email', header: 'Email' },
+    { key: 'coverage', header: 'Coverage' },
+    { key: 'location', header: 'Location' },
+    { key: 'submittedAt', header: 'Submitted' },
+  ];
 
   const policies = [
     { 
@@ -212,6 +234,42 @@ export default function DashboardHome() {
               <p className="stat-change">Next payment: Feb 15, 2024</p>
             </div>
           </div>
+        </Tile>
+      </Column>
+
+      <Column lg={16} md={8} sm={4}>
+        <Tile className="data-tile">
+          <div className="tile-header">
+            <Heading className="tile-title">Recent Sign-ups</Heading>
+          </div>
+          {signUpRows.length > 0 ? (
+            <DataTable rows={signUpRows} headers={signUpHeaders} isSortable>
+              {({ rows, headers, getHeaderProps, getRowProps, getTableProps }) => (
+                <Table {...getTableProps()}>
+                  <TableHead>
+                    <TableRow>
+                      {headers.map((header) => {
+                        const { key, ...headerProps } = getHeaderProps({ header });
+                        return <TableHeader key={key} {...headerProps}>{header.header}</TableHeader>;
+                      })}
+                    </TableRow>
+                  </TableHead>
+                  <TableBody>
+                    {rows.map((row) => {
+                      const { key, ...rowProps } = getRowProps({ row });
+                      return (
+                        <TableRow key={key} {...rowProps}>
+                          {row.cells.map((cell) => <TableCell key={cell.id}>{cell.value}</TableCell>)}
+                        </TableRow>
+                      );
+                    })}
+                  </TableBody>
+                </Table>
+              )}
+            </DataTable>
+          ) : (
+            <p className="dashboard-empty-state">Completed sign-ups will appear here.</p>
+          )}
         </Tile>
       </Column>
 

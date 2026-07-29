@@ -15,9 +15,10 @@ import {
   TileGroup,
   RadioTile,
 } from '@carbon/react';
-import { ArrowLeft, ArrowRight, Car, Home as HomeIcon } from '@carbon/icons-react';
+import { ArrowLeft, ArrowRight, Checkmark, Car, Home as HomeIcon } from '@carbon/icons-react';
 import StepBreadcrumb from '../components/StepBreadcrumb';
 import { isValidEmail, isValidPhone, isValidZipCode, formatDateForInput } from '../utils/businessHelpers';
+import { saveSignUpSubmission } from '../utils/signupSubmissions';
 import './SignUpPage.scss';
 
 const US_STATES = [
@@ -105,6 +106,11 @@ export default function SignUpPage() {
     window.scrollTo(0, 0);
   };
 
+  const handleSubmit = () => {
+    saveSignUpSubmission(formData);
+    navigate('/dashboard');
+  };
+
   const renderStepContent = () => {
     switch (currentStep) {
       case 0:
@@ -168,7 +174,6 @@ export default function SignUpPage() {
                   id="date-of-birth"
                   labelText="Date of Birth"
                   placeholder="mm/dd/yyyy"
-                  value={formData.dateOfBirth}
                   invalid={!!errors.dateOfBirth}
                   invalidText={errors.dateOfBirth}
                 />
@@ -322,11 +327,11 @@ export default function SignUpPage() {
         </div>
       </Column>
 
-      <Column lg={12} lgOffset={2} md={8} sm={4}>
+      <Column lg={{ span: 12, offset: 2 }} md={8} sm={4}>
         <Tile className="signup-page__form-tile">{renderStepContent()}</Tile>
       </Column>
 
-      <Column lg={12} lgOffset={2} md={8} sm={4}>
+      <Column lg={{ span: 12, offset: 2 }} md={8} sm={4}>
         <div className="signup-page__navigation">
           {currentStep > 0 && (
             <Button kind="secondary" renderIcon={ArrowLeft} onClick={handleBack}>
@@ -339,8 +344,8 @@ export default function SignUpPage() {
               Next
             </Button>
           ) : (
-            <Button kind="primary" onClick={() => navigate('/dashboard')}>
-              Back to Dashboard
+            <Button kind="primary" renderIcon={Checkmark} onClick={handleSubmit}>
+              Submit sign up
             </Button>
           )}
         </div>

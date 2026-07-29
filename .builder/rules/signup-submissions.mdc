@@ -1,0 +1,17 @@
+---
+description: Persist and display completed sign-up submissions
+globs:
+  - "src/pages/SignUpPage.jsx"
+  - "src/pages/DashboardHome.jsx"
+  - "src/utils/signupSubmissions.js"
+alwaysApply: false
+---
+
+# Sign-Up Submission Capture
+
+Completed sign-ups are stored in browser `localStorage` under `insureco-signup-submissions` because this prototype has no backend integration.
+
+- Call `saveSignUpSubmission(formData)` only from the final submit action.
+- Use `getSignUpSubmissions()` in the dashboard to render every stored completion, newest first.
+- Preserve the complete form record for the prototype, but only show the minimum useful identifying fields in the dashboard table: applicant name, email, requested coverage, location, and submission date.
+- A real application must replace this browser-only persistence with an authenticated API and must not keep sensitive form data in browser storage.
