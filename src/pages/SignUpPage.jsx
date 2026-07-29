@@ -17,6 +17,7 @@ import {
 } from '@carbon/react';
 import { ArrowLeft, ArrowRight } from '@carbon/icons-react';
 import { formatDateForInput } from '../utils/businessHelpers';
+import { useAuth } from '../contexts/AuthContext';
 import './SignUpPage.scss';
 
 const usStates = [
@@ -64,6 +65,7 @@ const initialFormData = {
 
 export default function SignUpPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
@@ -101,6 +103,7 @@ export default function SignUpPage() {
     if (!validateStep(currentStep)) return;
 
     if (currentStep === steps.length - 1) {
+      login();
       navigate('/dashboard');
       return;
     }

@@ -12,16 +12,19 @@ import {
   Link,
 } from '@carbon/react';
 import { Login, ArrowRight } from '@carbon/icons-react';
+import { useAuth } from '../contexts/AuthContext';
 import './LoginPage.scss';
 
 export default function LoginPage() {
   const navigate = useNavigate();
+  const { login } = useAuth();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    // Mock authentication - no validation, just navigate to dashboard
+    // Mock authentication - no validation, just mark the user as signed in
+    login();
     navigate('/dashboard');
   };
 

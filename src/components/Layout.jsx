@@ -25,11 +25,13 @@ import {
   Search,
 } from "@carbon/icons-react";
 import ThemeToggle from "./ThemeToggle";
+import { useAuth } from "../contexts/AuthContext";
 import "./Layout.scss";
 
 export default function Layout({ children }) {
   const navigate = useNavigate();
   const location = useLocation();
+  const { isAuthenticated, logout } = useAuth();
 
   // Remove padding for landing page
   const isLandingPage = location.pathname === '/';
@@ -62,9 +64,11 @@ export default function Layout({ children }) {
                 <HeaderMenuItem onClick={() => navigate("/")}>
                   Home
                 </HeaderMenuItem>
-                <HeaderMenuItem onClick={() => navigate("/dashboard")}>
-                  Dashboard
-                </HeaderMenuItem>
+                {isAuthenticated && (
+                  <HeaderMenuItem onClick={() => navigate("/dashboard")}>
+                    Dashboard
+                  </HeaderMenuItem>
+                )}
 
                 {/* Business Menu with Dropdown */}
                 <HeaderMenu aria-label="Business" menuLinkName="Business">
@@ -88,12 +92,20 @@ export default function Layout({ children }) {
                   </HeaderMenuItem>
                 </HeaderMenu>
 
-                <HeaderMenuItem onClick={() => navigate("/login")}>
-                  Login
-                </HeaderMenuItem>
-                <HeaderMenuItem onClick={() => navigate("/signup")}>
-                  Sign Up
-                </HeaderMenuItem>
+                {isAuthenticated ? (
+                  <HeaderMenuItem onClick={() => { logout(); navigate("/"); }}>
+                    Log Out
+                  </HeaderMenuItem>
+                ) : (
+                  <>
+                    <HeaderMenuItem onClick={() => navigate("/login")}>
+                      Login
+                    </HeaderMenuItem>
+                    <HeaderMenuItem onClick={() => navigate("/signup")}>
+                      Sign Up
+                    </HeaderMenuItem>
+                  </>
+                )}
                 <HeaderMenuItem onClick={() => navigate("/about")}>
                   About
                 </HeaderMenuItem>
@@ -124,9 +136,11 @@ export default function Layout({ children }) {
                     <HeaderMenuItem onClick={() => handleNavigateAndClose("/")}>
                       Home
                     </HeaderMenuItem>
-                    <HeaderMenuItem onClick={() => handleNavigateAndClose("/dashboard")}>
-                      Dashboard
-                    </HeaderMenuItem>
+                    {isAuthenticated && (
+                      <HeaderMenuItem onClick={() => handleNavigateAndClose("/dashboard")}>
+                        Dashboard
+                      </HeaderMenuItem>
+                    )}
 
                     {/* Business Section in Sidebar with Submenu */}
                     <SideNavMenu title="Business">
@@ -174,12 +188,20 @@ export default function Layout({ children }) {
                       </SideNavMenuItem>
                     </SideNavMenu>
 
-                    <HeaderMenuItem onClick={() => handleNavigateAndClose("/login")}>
-                      Login
-                    </HeaderMenuItem>
-                    <HeaderMenuItem onClick={() => handleNavigateAndClose("/signup")}>
-                      Sign Up
-                    </HeaderMenuItem>
+                    {isAuthenticated ? (
+                      <HeaderMenuItem onClick={() => { logout(); handleNavigateAndClose("/"); }}>
+                        Log Out
+                      </HeaderMenuItem>
+                    ) : (
+                      <>
+                        <HeaderMenuItem onClick={() => handleNavigateAndClose("/login")}>
+                          Login
+                        </HeaderMenuItem>
+                        <HeaderMenuItem onClick={() => handleNavigateAndClose("/signup")}>
+                          Sign Up
+                        </HeaderMenuItem>
+                      </>
+                    )}
                     <HeaderMenuItem onClick={() => handleNavigateAndClose("/about")}>
                       About
                     </HeaderMenuItem>
