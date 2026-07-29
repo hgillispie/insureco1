@@ -1,7 +1,14 @@
 @use '../styles/tokens' as *;
 
 .signup-page {
-  padding: var(--spacing-06) 0 var(--spacing-09);
+  display: flex;
+  justify-content: center;
+  padding: var(--spacing-06) var(--spacing-05) var(--spacing-09);
+}
+
+.signup-page-inner {
+  width: 100%;
+  max-width: 44rem;
 }
 
 .signup-hero {

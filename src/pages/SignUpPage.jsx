@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
-  Grid,
-  Column,
   Tile,
   Button,
   Heading,
@@ -302,8 +300,8 @@ export default function SignUpPage() {
   };
 
   return (
-    <Grid fullWidth className="signup-page">
-      <Column lg={12} lgOffset={2} md={8} sm={4}>
+    <div className="signup-page">
+      <div className="signup-page-inner">
         <div className="signup-hero">
           <Heading className="signup-hero-title">Sign Up for InsureCo</Heading>
           <p className="signup-hero-subtitle">Get started with your insurance coverage in just a few steps</p>
@@ -336,7 +334,7 @@ export default function SignUpPage() {
             </Button>
           </div>
         </Tile>
-      </Column>
-    </Grid>
+      </div>
+    </div>
   );
 }
