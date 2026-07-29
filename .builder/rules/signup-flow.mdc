@@ -62,7 +62,7 @@ Use Carbon icons for car/home choices and navigation. Keep notification colors m
 The page follows the Figma-backed structure:
 
 - Centered red gradient banner with title and subtitle.
-- Progress surface below the banner.
+- Progress surface below the banner uses `StepBreadcrumb` with `variant="segmented"`: each step is a 128px-minimum segment with a 2px top rule, compact 16px state icon, primary label, and secondary description. Completed/current segments use the global brand-blue token; incomplete segments use theme-aware border and text tokens. Preserve horizontal scrolling on narrow screens instead of stacking the step icon above its copy.
 - Theme-aware form tile with a 5px interactive-red top border.
 - Heading divider, descriptive copy, vertically spaced large controls, and a footer action row.
 - Insurance options are large selectable icon tiles.

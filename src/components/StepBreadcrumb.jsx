@@ -1,5 +1,5 @@
 import React from 'react';
-import { Checkmark } from '@carbon/icons-react';
+import { Checkmark, CheckmarkFilled, CircleDash, Incomplete } from '@carbon/icons-react';
 import './StepBreadcrumb.scss';
 
 /**
@@ -14,9 +14,11 @@ import './StepBreadcrumb.scss';
  * @param {number} props.currentIndex - Index of current step (0-based)
  * @param {boolean} props.spaceEqually - Whether to space steps equally (default: true)
  */
-export default function StepBreadcrumb({ steps, currentIndex = 0, spaceEqually = true }) {
+export default function StepBreadcrumb({ steps, currentIndex = 0, spaceEqually = true, variant = 'default' }) {
+  const isSegmented = variant === 'segmented';
+
   return (
-    <div className={`step-breadcrumb ${spaceEqually ? 'step-breadcrumb--equal' : ''}`}>
+    <div className={`step-breadcrumb ${spaceEqually ? 'step-breadcrumb--equal' : ''} ${isSegmented ? 'step-breadcrumb--segmented' : ''}`}>
       {steps.map((step, index) => {
         const isComplete = index < currentIndex;
         const isCurrent = index === currentIndex;
@@ -30,9 +32,18 @@ export default function StepBreadcrumb({ steps, currentIndex = 0, spaceEqually =
               } ${isCurrent ? 'step-breadcrumb__item--current' : ''} ${
                 isIncomplete ? 'step-breadcrumb__item--incomplete' : ''
               }`}
+              aria-current={isCurrent ? 'step' : undefined}
             >
               <div className="step-breadcrumb__marker">
-                {isComplete ? (
+                {isSegmented ? (
+                  isComplete ? (
+                    <CheckmarkFilled size={16} className="step-breadcrumb__status-icon" />
+                  ) : isCurrent ? (
+                    <Incomplete size={16} className="step-breadcrumb__status-icon" />
+                  ) : (
+                    <CircleDash size={16} className="step-breadcrumb__status-icon" />
+                  )
+                ) : isComplete ? (
                   <Checkmark size={16} className="step-breadcrumb__check" />
                 ) : (
                   <span className="step-breadcrumb__number">{index + 1}</span>
@@ -46,8 +57,7 @@ export default function StepBreadcrumb({ steps, currentIndex = 0, spaceEqually =
               </div>
             </div>
             
-            {/* Connector line between steps */}
-            {index < steps.length - 1 && (
+            {!isSegmented && index < steps.length - 1 && (
               <div className={`step-breadcrumb__line ${isComplete ? 'step-breadcrumb__line--complete' : ''}`} />
             )}
           </React.Fragment>

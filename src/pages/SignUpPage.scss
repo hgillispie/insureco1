@@ -54,21 +54,7 @@
     box-shadow: var(--card-shadow);
 
     .step-breadcrumb {
-      align-items: flex-start;
-    }
-
-    .step-breadcrumb__item {
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-    }
-
-    .step-breadcrumb__content {
-      align-items: center;
-    }
-
-    .step-breadcrumb__line {
-      margin-top: 11px;
+      align-items: stretch;
     }
   }
 
@@ -350,10 +336,6 @@
 
       .step-breadcrumb {
         min-width: max-content;
-      }
-
-      .step-breadcrumb__item {
-        min-width: 72px;
       }
     }
 

@@ -123,21 +123,21 @@ export default function SignUpPage() {
 
   const steps = useMemo(() => {
     const flowSteps = [
-      { key: 'personal', label: 'Your Info' },
-      { key: 'address', label: 'Address' },
-      { key: 'insurance', label: 'Insurance' },
+      { key: 'personal', label: 'Your Info', description: 'Personal details' },
+      { key: 'address', label: 'Address', description: 'Where you live' },
+      { key: 'insurance', label: 'Insurance', description: 'What to insure' },
     ];
 
     if (formData.insuranceType === 'car' || formData.insuranceType === 'both') {
-      flowSteps.push({ key: 'car', label: 'Car Details' });
+      flowSteps.push({ key: 'car', label: 'Car Details', description: 'Vehicle information' });
     }
     if (formData.insuranceType === 'home' || formData.insuranceType === 'both') {
-      flowSteps.push({ key: 'property', label: 'Home Details' });
+      flowSteps.push({ key: 'property', label: 'Home Details', description: 'Property information' });
     }
 
     flowSteps.push(
-      { key: 'coverage', label: 'Coverage' },
-      { key: 'review', label: 'Review' },
+      { key: 'coverage', label: 'Coverage', description: 'Choose protection' },
+      { key: 'review', label: 'Review', description: 'Confirm details' },
     );
     return flowSteps;
   }, [formData.insuranceType]);
@@ -723,7 +723,7 @@ export default function SignUpPage() {
 
       <Column lg={16} md={8} sm={4} className="signup-progress-column">
         <nav className="signup-progress" aria-label="Sign-up progress">
-          <StepBreadcrumb steps={steps} currentIndex={currentStep} spaceEqually />
+          <StepBreadcrumb steps={steps} currentIndex={currentStep} spaceEqually variant="segmented" />
         </nav>
       </Column>
 
