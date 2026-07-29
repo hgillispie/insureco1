@@ -275,7 +275,7 @@ export default function SignUpPage() {
   const renderPersonalStep = () => (
     <>
       <div className="signup-section-header">
-        <Heading className="signup-section-title">Personal Information</Heading>
+        <Heading className="signup-section-title">Hello Greg</Heading>
       </div>
       <p className="signup-section-description">Let's start with some basic information about you.</p>
       <Form className="signup-form" onSubmit={(event) => event.preventDefault()}>
