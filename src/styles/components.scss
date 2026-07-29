@@ -333,6 +333,53 @@
 }
 
 // ============================================
+// Progress Indicator
+// ============================================
+// IMPORTANT: High specificity required to override Carbon's defaults.
+// Carbon's progress indicator styles don't adapt to custom theme tokens,
+// causing dark-on-dark text in dark mode without these overrides.
+// See .builder/rules/progress-indicator-fix.mdc for full details.
+.cds--progress-indicator {
+  .cds--progress-step .cds--progress-label {
+    color: var(--text-primary) !important;
+  }
+
+  .cds--progress-step--current .cds--progress-step-button .cds--progress-label {
+    color: var(--interactive-primary) !important;
+    font-weight: var(--font-weight-semibold);
+  }
+
+  .cds--progress-step--complete .cds--progress-step-button .cds--progress-label {
+    color: var(--text-primary) !important;
+  }
+
+  .cds--progress-step--incomplete .cds--progress-step-button .cds--progress-label {
+    color: var(--text-secondary) !important;
+  }
+
+  .cds--progress-line,
+  .cds--progress-bar--light .cds--progress-line {
+    background-color: var(--border-subtle);
+  }
+
+  .cds--progress-step--complete .cds--progress-line {
+    background-color: var(--interactive-primary);
+  }
+
+  svg {
+    fill: var(--text-secondary);
+  }
+
+  .cds--progress-step--current svg {
+    fill: var(--interactive-primary);
+  }
+
+  .cds--progress-step--complete svg {
+    fill: var(--interactive-primary);
+  }
+}
+
+// ============================================
 // Tags
 // ============================================
 .cds--tag {

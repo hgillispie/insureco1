@@ -1,9 +1,10 @@
 import React from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
+import { useAuth } from "./contexts/AuthContext";
 import Layout from "./components/Layout";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import SignUpComingSoon from "./pages/SignUpComingSoon";
+import SignUpPage from "./pages/SignUpPage";
 import DashboardHome from "./pages/DashboardHome";
 import AboutPage from "./pages/AboutPage";
 import ThemePreviewPage from "./pages/ThemePreviewPage";
@@ -21,13 +22,18 @@ import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
 
 export default function App() {
+  const { isAuthenticated } = useAuth();
+
   return (
     <Layout>
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpComingSoon />} />
-        <Route path="/dashboard" element={<DashboardHome />} />
+        <Route path="/signup" element={<SignUpPage />} />
+        <Route
+          path="/dashboard"
+          element={isAuthenticated ? <DashboardHome /> : <Navigate to="/signup" replace />}
+        />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/theme-preview" element={<ThemePreviewPage />} />
         <Route path="/progress-preview" element={<ProgressIndicatorPreview />} />
