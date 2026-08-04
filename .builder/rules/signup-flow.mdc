@@ -32,6 +32,7 @@ No steps follow the coverage-selection screen yet. After a valid selection, the 
 - Clear a field error as its value changes.
 - Validate email with `isValidEmail`, phone with `isValidPhone`, and ZIP code with `isValidZipCode` from `src/utils/businessHelpers.js`.
 - Store DatePicker values as `mm/dd/yyyy` using `formatDateForInput`; never store the raw `Date` object in form state.
+- The First Name label uses Carbon `Tooltip` to explain that users should enter their given name as it appears on official documents.
 
 ## Layout and Theming
 

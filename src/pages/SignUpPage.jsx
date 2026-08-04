@@ -11,6 +11,7 @@ import {
   Tile,
   TileGroup,
   TextInput,
+  Tooltip,
 } from '@carbon/react';
 import { ArrowLeft, ArrowRight, Car, Home as HomeIcon } from '@carbon/icons-react';
 import StepBreadcrumb from '../components/StepBreadcrumb';
@@ -116,7 +117,11 @@ export default function SignUpPage() {
     <Form className="signup-form" aria-label="Personal information">
       <TextInput
         id="first-name"
-        labelText="First Name"
+        labelText={(
+          <Tooltip label="Enter your given name as it appears on official documents." align="right">
+            <span>First Name</span>
+          </Tooltip>
+        )}
         placeholder="Enter your first name"
         value={formData.firstName}
         onChange={(event) => handleInputChange('firstName', event.target.value)}
@@ -160,7 +165,6 @@ export default function SignUpPage() {
           id="date-of-birth"
           labelText="Date of Birth"
           placeholder="mm/dd/yyyy"
-          value={formData.dateOfBirth}
           invalid={Boolean(errors.dateOfBirth)}
           invalidText={errors.dateOfBirth}
         />
