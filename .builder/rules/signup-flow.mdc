@@ -39,5 +39,6 @@ No fourth form step follows the coverage-selection screen. After a valid coverag
 - Preserve the red hero banner, grey progress card, form-card accent, and Carbon button hierarchy from the Figma frames.
 - Use `--background-*`, `--text-*`, `--interactive-*`, `--field-*`, and `--border-*` tokens. Do not hardcode colors.
 - Keep the layout single-column and constrained to the Figma frame width on larger screens.
-- At widths below 672px, stack form actions to full width and preserve usable touch targets.
+- Use responsive layout ranges at 480px, 672px, 1056px, 1312px, 1584px, and 1900px. The form column remains centered and capped at 703px through wide desktop displays; only page gutters expand beyond tablet widths.
+- At widths below 672px, stack form actions to full width and preserve usable touch targets. At widths below 480px, reduce gutters and tile padding without changing control heights.
 - Check both white and g100 themes after visual changes.
