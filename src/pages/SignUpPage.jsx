@@ -13,7 +13,7 @@ import {
   TextInput,
   Tooltip,
 } from '@carbon/react';
-import { ArrowLeft, ArrowRight, Car, Home as HomeIcon } from '@carbon/icons-react';
+import { ArrowLeft, ArrowRight, Car, CheckmarkFilled, Home as HomeIcon } from '@carbon/icons-react';
 import StepBreadcrumb from '../components/StepBreadcrumb';
 import {
   formatDateForInput,
@@ -54,6 +54,7 @@ export default function SignUpPage() {
   const [currentStep, setCurrentStep] = useState(0);
   const [formData, setFormData] = useState(initialFormData);
   const [errors, setErrors] = useState({});
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleInputChange = (field, value) => {
     setFormData((current) => ({ ...current, [field]: value }));
@@ -104,7 +105,12 @@ export default function SignUpPage() {
   const handleNext = () => {
     if (!validateStep(currentStep)) return;
 
-    setCurrentStep((step) => Math.min(step + 1, steps.length - 1));
+    if (currentStep === steps.length - 1) {
+      setIsSubmitted(true);
+    } else {
+      setCurrentStep((step) => step + 1);
+    }
+
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -280,28 +286,38 @@ export default function SignUpPage() {
           <p className="signup-hero__subtitle">Get started with your insurance coverage in just a few steps</p>
         </section>
 
-        <nav className="signup-progress" aria-label="Sign-up progress">
-          <StepBreadcrumb steps={steps} currentIndex={currentStep} />
-        </nav>
+        {!isSubmitted && (
+          <nav className="signup-progress" aria-label="Sign-up progress">
+            <StepBreadcrumb steps={steps} currentIndex={currentStep} />
+          </nav>
+        )}
       </div>
 
-      <section className="signup-card" aria-labelledby="signup-step-title">
-        <div className="signup-card__header">
-          <Heading id="signup-step-title" className="signup-card__title">{content.title}</Heading>
-        </div>
-        <p className="signup-card__description">{content.description}</p>
-        {content.form}
-        <div className="signup-actions">
-          {currentStep > 0 && (
-            <Button kind="secondary" renderIcon={ArrowLeft} onClick={handleBack}>
-              Back
+      {isSubmitted ? (
+        <section className="signup-card signup-card--confirmation" aria-labelledby="signup-confirmation-title">
+          <CheckmarkFilled className="signup-confirmation__icon" size={48} aria-hidden="true" />
+          <Heading id="signup-confirmation-title" className="signup-card__title">Thank you for submitting the form</Heading>
+          <p className="signup-card__description">We’ve received your information and will be in touch with your insurance options soon.</p>
+        </section>
+      ) : (
+        <section className="signup-card" aria-labelledby="signup-step-title">
+          <div className="signup-card__header">
+            <Heading id="signup-step-title" className="signup-card__title">{content.title}</Heading>
+          </div>
+          <p className="signup-card__description">{content.description}</p>
+          {content.form}
+          <div className="signup-actions">
+            {currentStep > 0 && (
+              <Button kind="secondary" renderIcon={ArrowLeft} onClick={handleBack}>
+                Back
+              </Button>
+            )}
+            <Button renderIcon={ArrowRight} onClick={handleNext}>
+              {currentStep === steps.length - 1 ? 'Submit' : 'Next'}
             </Button>
-          )}
-          <Button renderIcon={ArrowRight} onClick={handleNext}>
-            Next
-          </Button>
-        </div>
-      </section>
+          </div>
+        </section>
+      )}
     </main>
   );
 }

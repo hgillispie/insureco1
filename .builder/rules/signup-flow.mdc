@@ -16,7 +16,7 @@ alwaysApply: false
 2. **Your Address** — street address, city, state, and ZIP code.
 3. **What Will You Insure** — Car Insurance, Home Insurance, or Both Home and Car.
 
-No steps follow the coverage-selection screen yet. After a valid selection, the Next button intentionally remains on that final screen.
+No fourth form step follows the coverage-selection screen. After a valid coverage selection, Submit displays the thank-you confirmation state.
 
 ## Components
 
