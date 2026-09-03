@@ -88,6 +88,10 @@ export default function Layout({ children }) {
                   </HeaderMenuItem>
                 </HeaderMenu>
 
+                <HeaderMenuItem element={Link} to="/dashboard-prototypes">
+                  Dashboard Prototypes
+                </HeaderMenuItem>
+
                 <HeaderMenuItem onClick={() => navigate("/login")}>
                   Login
                 </HeaderMenuItem>
@@ -173,6 +177,10 @@ export default function Layout({ children }) {
                         Payments
                       </SideNavMenuItem>
                     </SideNavMenu>
+
+                    <HeaderMenuItem onClick={() => handleNavigateAndClose("/dashboard-prototypes")}>
+                      Dashboard Prototypes
+                    </HeaderMenuItem>
 
                     <HeaderMenuItem onClick={() => handleNavigateAndClose("/login")}>
                       Login
