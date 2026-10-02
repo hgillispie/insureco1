@@ -88,6 +88,18 @@ export default function Layout({ children }) {
                   </HeaderMenuItem>
                 </HeaderMenu>
 
+                {/*
+                  Entry point to the standalone financial dashboard prototypes
+                  (conservative/modern/wild) built from the IFAD PRD. These live
+                  outside /business/dashboard on purpose so the existing business
+                  dashboard is untouched while the prototypes are reviewed.
+                  See src/pages/dashboards/DashboardPrototypesIndex.jsx for the
+                  picker page these routes lead to.
+                */}
+                <HeaderMenuItem element={Link} to="/dashboard-prototypes">
+                  Dashboard Prototypes
+                </HeaderMenuItem>
+
                 <HeaderMenuItem onClick={() => navigate("/login")}>
                   Login
                 </HeaderMenuItem>
@@ -173,6 +185,16 @@ export default function Layout({ children }) {
                         Payments
                       </SideNavMenuItem>
                     </SideNavMenu>
+
+                    {/*
+                      Mobile/sidebar equivalent of the desktop header link above.
+                      Uses handleNavigateAndClose (instead of the Link component)
+                      so the side nav collapses after navigating, matching the
+                      pattern used by the other mobile nav items below.
+                    */}
+                    <HeaderMenuItem onClick={() => handleNavigateAndClose("/dashboard-prototypes")}>
+                      Dashboard Prototypes
+                    </HeaderMenuItem>
 
                     <HeaderMenuItem onClick={() => handleNavigateAndClose("/login")}>
                       Login

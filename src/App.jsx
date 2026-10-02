@@ -20,6 +20,11 @@ import AddVehiclePage from "./pages/business/AddVehiclePage";
 import FileClaimPage from "./pages/business/FileClaimPage";
 import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
+import DashboardPrototypesIndex from "./pages/dashboards/DashboardPrototypesIndex";
+import ConservativeDashboard from "./pages/dashboards/ConservativeDashboard";
+import ModernDashboard from "./pages/dashboards/ModernDashboard";
+import WildDashboard from "./pages/dashboards/WildDashboard";
+import AssetDetailView from "./pages/dashboards/AssetDetailView";
 
 export default function App() {
   return (
@@ -48,6 +53,13 @@ export default function App() {
         <Route path="/business/payments" element={<BusinessComingSoon />} />
         <Route path="/business/file-claim" element={<FileClaimPage />} />
         <Route path="/business/make-payment" element={<MakePaymentPage />} />
+
+        {/* Financial Dashboard Prototypes */}
+        <Route path="/dashboard-prototypes" element={<DashboardPrototypesIndex />} />
+        <Route path="/dashboard-prototypes/conservative" element={<ConservativeDashboard />} />
+        <Route path="/dashboard-prototypes/modern" element={<ModernDashboard />} />
+        <Route path="/dashboard-prototypes/wild" element={<WildDashboard />} />
+        <Route path="/dashboard-prototypes/:variant/asset/:assetId" element={<AssetDetailView />} />
       </Routes>
     </Layout>
   );

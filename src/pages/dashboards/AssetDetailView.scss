@@ -1,0 +1,122 @@
+@use '../../styles/tokens' as *;
+
+.asset-detail {
+  padding: var(--spacing-06) var(--spacing-07);
+  max-width: 1200px;
+  margin: 0 auto;
+
+  &__header {
+    margin-bottom: var(--spacing-06);
+  }
+
+  &__title-row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-04);
+    margin-top: var(--spacing-04);
+    flex-wrap: wrap;
+  }
+
+  &__title {
+    font-size: var(--heading-h2-size);
+    font-weight: var(--font-weight-semibold);
+    color: var(--text-primary);
+    margin: 0;
+  }
+
+  &__subtitle {
+    color: var(--text-secondary);
+    margin-top: var(--spacing-02);
+  }
+
+  &__stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-05);
+    margin-bottom: var(--spacing-06);
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__stat-tile {
+    background: var(--background-secondary) !important;
+    padding: var(--spacing-05) !important;
+  }
+
+  &__stat-label {
+    color: var(--text-secondary);
+    font-size: var(--body-sm-size);
+    margin: 0 0 var(--spacing-02) 0;
+  }
+
+  &__stat-value {
+    color: var(--text-primary);
+    font-size: var(--heading-h4-size);
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+  }
+
+  &__coverage-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-06);
+    padding: var(--spacing-06) 0;
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  &__coverage-value {
+    color: var(--text-primary);
+    font-size: var(--body-md-size);
+    font-weight: var(--font-weight-semibold);
+    margin: 0;
+  }
+
+  &__empty {
+    color: var(--text-secondary);
+    padding: var(--spacing-06) 0;
+  }
+
+  &__media-placeholder {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--spacing-03);
+    color: var(--text-tertiary);
+    padding: var(--spacing-09) 0;
+    text-align: center;
+  }
+
+  // Modern variant: tighter, refined accents
+  &--modern {
+    .asset-detail__title {
+      font-weight: var(--font-weight-regular);
+      letter-spacing: -0.01em;
+    }
+
+    .asset-detail__stat-tile {
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-subtle);
+    }
+  }
+
+  // Wild variant: bold accent border on stat tiles
+  &--wild {
+    .asset-detail__stat-tile {
+      border-left: 4px solid var(--interactive-primary);
+      border-radius: var(--radius-lg);
+    }
+
+    .asset-detail__title {
+      font-weight: var(--font-weight-semibold);
+      background: linear-gradient(90deg, var(--interactive-primary), var(--color-brand-blue-60));
+      -webkit-background-clip: text;
+      background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+  }
+}
