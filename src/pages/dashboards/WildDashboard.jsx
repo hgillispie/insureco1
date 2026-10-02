@@ -147,7 +147,7 @@ export default function WildDashboard() {
       </div>
 
       <div className="wild-dashboard__chart-card">
-        <h2 className="wild-dashboard__section-title">The Money Motion Chart</h2>
+        <h2 className="wild-dashboard__section-title wild-dashboard__section-title--chart">The Money Motion Chart</h2>
         <div className="wild-dashboard__series-toggles">
           {SERIES.map((s) => (
             <button

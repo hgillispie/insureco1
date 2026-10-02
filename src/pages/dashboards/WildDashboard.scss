@@ -135,6 +135,17 @@
     font-weight: var(--font-weight-bold);
     color: var(--text-primary);
     margin: 0 0 var(--spacing-05) 0;
+
+    &--chart {
+      font-size: 2rem;
+      color: #000dff;
+
+      // Pure blue fails contrast on the g90/g100 background
+      :root[data-carbon-theme='g90'] &,
+      :root[data-carbon-theme='g100'] & {
+        color: var(--color-brand-blue-40);
+      }
+    }
   }
 
   &__series-toggles {
