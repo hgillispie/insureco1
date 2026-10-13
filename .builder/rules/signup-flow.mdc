@@ -8,6 +8,22 @@ alwaysApply: false
 
 # Sign-Up Flow Implementation
 
+## Current Implementation (Figma three-step intake)
+
+`src/pages/SignUpPage.jsx` + `SignUpPage.scss`, routed at `/signup` in `App.jsx` (replaces `SignUpComingSoon`).
+Built from Figma file `GjbytUJLP1oVJwsHI223Tq` (InsureCo Design System), nodes:
+- `11148-21182` Personal Info (first/last name, email, phone, DatePicker DOB)
+- `11152-24746` Address (street, city, State `Select`, zip)
+- `11152-26346` Insurance Type (`TileGroup` + `RadioTile`: Car, Home, Both)
+
+Structure: red gradient hero -> Carbon `ProgressIndicator` card -> form card (4px red top border, red-underlined step title, red divider above Back/Next).
+- Back is secondary, Next is primary; both 48px with arrow icons. Next is disabled until the step is valid.
+- The last step's Next logs the form data and navigates to `/dashboard` (no further steps yet).
+- DOB uses `formatDateForInput` from `src/utils/businessHelpers.js` (mm/dd/yyyy, no time).
+- `data-node-id` attributes map elements back to Figma nodes.
+- Figma's Zip placeholder was a copy of the phone placeholder; the page uses `12345`.
+- The sections below describe the earlier, broader seven-step plan (car/home details, coverage, review) and are not implemented yet.
+
 ## Overview
 
 The InsureCo sign-up flow is a **mobile-first**, multi-step form that guides users through the insurance sign-up process. The flow consists of up to 7 steps with conditional navigation based on insurance type selection.
@@ -181,7 +197,7 @@ From `@carbon/icons-react`:
 
 ### Mobile-First Breakpoints
 
-```scss
+
 // Base styles: Mobile (< 672px)
 // Tablet: 672px - 1055px
 // Desktop: 1056px+
