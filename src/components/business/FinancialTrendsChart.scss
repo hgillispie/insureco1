@@ -1,0 +1,63 @@
+@use '../../styles/tokens' as *;
+
+.trends-chart {
+  &__controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--spacing-05);
+    margin-bottom: var(--spacing-05);
+  }
+
+  &__series-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-03);
+  }
+
+  &__canvas {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.trends-legend-label {
+  font-size: var(--body-sm-size);
+  color: var(--text-primary);
+}
+
+.trends-tooltip {
+  padding: var(--spacing-04);
+  background: var(--background-primary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  box-shadow: var(--dropdown-shadow);
+  font-size: var(--body-sm-size);
+  color: var(--text-primary);
+
+  &__label {
+    margin: 0 0 var(--spacing-03);
+    font-weight: var(--font-weight-semibold);
+  }
+
+  &__row {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-03);
+    margin: 0 0 var(--spacing-02);
+
+    strong {
+      margin-left: auto;
+      padding-left: var(--spacing-05);
+      font-weight: var(--font-weight-semibold);
+    }
+  }
+
+  &__swatch {
+    flex-shrink: 0;
+    width: 0.625rem;
+    height: 0.625rem;
+    border-radius: var(--radius-circle);
+  }
+}

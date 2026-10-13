@@ -3,7 +3,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import Layout from "./components/Layout";
 import LandingPage from "./pages/LandingPage";
 import LoginPage from "./pages/LoginPage";
-import SignUpComingSoon from "./pages/SignUpComingSoon";
+import SignUpPage from "./pages/SignUpPage";
 import DashboardHome from "./pages/DashboardHome";
 import AboutPage from "./pages/AboutPage";
 import ThemePreviewPage from "./pages/ThemePreviewPage";
@@ -19,6 +19,7 @@ import AddVehiclePage from "./pages/business/AddVehiclePage";
 import FileClaimPage from "./pages/business/FileClaimPage";
 import MakePaymentPage from "./pages/business/MakePaymentPage";
 import MapPage from "./pages/business/MapPage";
+import FinancialDashboardPage from "./pages/business/FinancialDashboardPage";
 
 export default function App() {
   return (
@@ -26,7 +27,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<LandingPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/signup" element={<SignUpComingSoon />} />
+        <Route path="/signup" element={<SignUpPage />} />
         <Route path="/dashboard" element={<DashboardHome />} />
         <Route path="/about" element={<AboutPage />} />
         <Route path="/theme-preview" element={<ThemePreviewPage />} />
@@ -42,6 +43,7 @@ export default function App() {
         <Route path="/business/fleet/add" element={<AddVehiclePage />} />
         <Route path="/business/fleet/:vehicleId" element={<VehicleDetailPage />} />
         <Route path="/business/map" element={<MapPage />} />
+        <Route path="/business/financials" element={<FinancialDashboardPage />} />
         <Route path="/business/claims" element={<BusinessComingSoon />} />
         <Route path="/business/payments" element={<BusinessComingSoon />} />
         <Route path="/business/file-claim" element={<FileClaimPage />} />
