@@ -1,0 +1,33 @@
+---
+description: Financial dashboard (Insurance Portfolio Dashboard) at /business/financials
+globs:
+  - "src/pages/business/FinancialDashboardPage.*"
+  - "src/components/business/FinancialTrendsChart.*"
+  - "src/components/business/AssetLedger.*"
+  - "src/data/financialMockData.js"
+alwaysApply: false
+---
+
+# Financial Dashboard
+
+Route: `/business/financials` (Business menu -> Financials, in both header menu and side nav in `Layout.jsx`).
+Built from two screenshots supplied by the user (KPI header + trends chart, and asset ledger).
+
+## Files
+- `src/pages/business/FinancialDashboardPage.jsx/.scss` - header, YTD KPI tiles, summary stat cards, panels
+- `src/components/business/FinancialTrendsChart.jsx/.scss` - Recharts `ComposedChart`
+- `src/components/business/AssetLedger.jsx/.scss` - Carbon `DataTable` (sortable, searchable, row click opens a `Modal`)
+- `src/data/financialMockData.js` - mock data
+
+## Data rules
+- `YTD_TOTALS` is the source of truth. Monthly series are scaled to sum exactly to it; loss ratio, net revenue and avg monthly premium are derived in `getFinancialSummary()`.
+- The ledger (`portfolioAssets`) is standalone mock data; it is not linked to `businessMockData.js` properties/vehicles.
+
+## Chart
+- Recharts (installed for this page; Carbon has no chart package here). Colors use CSS variables (`--color-success-60`, `--color-brand-red-60`, `--text-secondary`, `--border-subtle`) so both themes work.
+- Property series are solid (area fill unless "Line" toggle is on); Auto series are dashed lines with markers.
+- The four series buttons toggle visibility (`aria-pressed`).
+
+## Gotchas
+- Spread `getRowProps`/`getHeaderProps` after pulling out `key` (React 19 warns on spreading `key`).
+- Parse ledger ISO dates as local (`T00:00:00`) to avoid a one-day timezone shift.
